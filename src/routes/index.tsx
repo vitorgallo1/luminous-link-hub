@@ -569,9 +569,9 @@ function Trajetoria() {
 
                     {/* Content */}
                     <div
-                      className={`col-span-1 col-start-2 sm:col-start-${
-                        left ? "1" : "2"
-                      } ${left ? "sm:pr-16 sm:text-right" : "sm:pl-16"}`}
+                      className={`col-span-1 col-start-2 ${
+                        left ? "sm:col-start-1 sm:pr-16 sm:text-right" : "sm:col-start-2 sm:pl-16"
+                      }`}
                     >
                       <div className="inline-flex items-center gap-2 rounded-full bg-navy px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-gold">
                         <Calendar className="h-3 w-3" />
