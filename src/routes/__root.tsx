@@ -84,14 +84,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Conheça a trajetória e as conquistas de Carla Machado, candidata a Deputada Estadual pelo Rio de Janeiro. Mais de duas décadas de trabalho por saúde, educação, segurança e desenvolvimento regional.",
       },
       { name: "author", content: "Campanha Carla Machado" },
-      { property: "og:title", content: "Carla Machado — Deputada Estadual" },
+      { property: "og:title", content: "Carla Machado — Deputada Estadual | Experiência para fazer. Sensibilidade para cuidar." },
       {
         property: "og:description",
         content:
-          "Experiência para fazer. Sensibilidade para cuidar. Trabalho, resultados e proximidade com quem mais precisa.",
+          "Conheça a trajetória e as conquistas de Carla Machado, candidata a Deputada Estadual pelo Rio de Janeiro. Mais de duas décadas de trabalho por saúde, educação, segurança e desenvolvimento regional.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Carla Machado — Deputada Estadual | Experiência para fazer. Sensibilidade para cuidar." },
+      { name: "twitter:description", content: "Conheça a trajetória e as conquistas de Carla Machado, candidata a Deputada Estadual pelo Rio de Janeiro. Mais de duas décadas de trabalho por saúde, educação, segurança e desenvolvimento regional." },
+      { property: "og:image", content: "https://id-preview--bc5ebaa8-4248-443b-9533-a560b32e8e57.lovable.app/og-image.jpg" },
+      { name: "twitter:image", content: "https://id-preview--bc5ebaa8-4248-443b-9533-a560b32e8e57.lovable.app/og-image.jpg" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
