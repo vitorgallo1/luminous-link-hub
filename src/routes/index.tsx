@@ -36,12 +36,18 @@ import {
   ShieldCheck,
 } from "lucide-react";
 
-import heroImg from "@/assets/carla-portrait.jpg";
-import ctaImg from "@/assets/carla-cta.jpg";
-import peopleImg from "@/assets/carla-people.jpg";
+import heroAsset from "@/assets/carla-portrait-real.jpg.asset.json";
+import ctaAsset from "@/assets/carla-cta-real.jpg.asset.json";
+import peopleAsset from "@/assets/carla-people-real.jpg.asset.json";
+import eventAsset from "@/assets/carla-event.jpg.asset.json";
 import hospitalImg from "@/assets/achievement-hospital.jpg";
 import universityImg from "@/assets/achievement-university.jpg";
 import agriImg from "@/assets/achievement-agri.jpg";
+const heroImg = heroAsset.url;
+const ctaImg = ctaAsset.url;
+const peopleImg = peopleAsset.url;
+const eventImg = eventAsset.url;
+void eventImg;
 
 export const Route = createFileRoute("/")({
   head: () => ({
