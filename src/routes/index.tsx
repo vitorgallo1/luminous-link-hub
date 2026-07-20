@@ -48,6 +48,16 @@ const ctaImg = ctaAsset.url;
 const peopleImg = peopleAsset.url;
 const eventImg = eventAsset.url;
 void eventImg;
+import {
+  AtuacaoParlamentar,
+  ProjetosDeLei,
+  PrestacaoContasMandato,
+  InvestimentosPorArea,
+  MapaAtuacao,
+  PrincipaisEntregas,
+  TimelineMandato,
+  ImpactoEstado,
+} from "@/components/mandate-sections";
 
 export const Route = createFileRoute("/")({
   head: () => ({
