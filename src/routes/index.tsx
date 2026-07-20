@@ -48,6 +48,16 @@ const ctaImg = ctaAsset.url;
 const peopleImg = peopleAsset.url;
 const eventImg = eventAsset.url;
 void eventImg;
+import {
+  AtuacaoParlamentar,
+  ProjetosDeLei,
+  PrestacaoContasMandato,
+  InvestimentosPorArea,
+  MapaAtuacao,
+  PrincipaisEntregas,
+  TimelineMandato,
+  ImpactoEstado,
+} from "@/components/mandate-sections";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -156,11 +166,12 @@ function Nav() {
   }, []);
   const links = [
     ["Trajetória", "#trajetoria"],
-    ["Números", "#numeros"],
-    ["Prestação de Contas", "#contas"],
+    ["Mandato", "#atuacao"],
+    ["Projetos", "#projetos"],
+    ["Prestação", "#prestacao"],
+    ["Entregas", "#entregas"],
+    ["Mapa", "#mapa-atuacao"],
     ["Causas", "#causas"],
-    ["Mapa", "#mapa"],
-    ["Contato", "#rodape"],
   ];
   return (
     <header
@@ -1711,6 +1722,7 @@ function Footer() {
 
 /* ============ Page ============ */
 
+
 function LandingPage() {
   return (
     <div className="min-h-screen bg-background">
@@ -1718,6 +1730,14 @@ function LandingPage() {
       <main>
         <Hero />
         <Trajetoria />
+        <AtuacaoParlamentar />
+        <ProjetosDeLei />
+        <PrestacaoContasMandato />
+        <InvestimentosPorArea />
+        <MapaAtuacao />
+        <PrincipaisEntregas />
+        <TimelineMandato />
+        <ImpactoEstado />
         <Numeros />
         <Contas />
         <Mapa />
