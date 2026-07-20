@@ -1712,6 +1712,17 @@ function Footer() {
 
 /* ============ Page ============ */
 
+import {
+  AtuacaoParlamentar,
+  ProjetosDeLei,
+  PrestacaoContasMandato,
+  InvestimentosPorArea,
+  MapaAtuacao,
+  PrincipaisEntregas,
+  TimelineMandato,
+  ImpactoEstado,
+} from "@/components/mandate-sections";
+
 function LandingPage() {
   return (
     <div className="min-h-screen bg-background">
@@ -1719,6 +1730,14 @@ function LandingPage() {
       <main>
         <Hero />
         <Trajetoria />
+        <AtuacaoParlamentar />
+        <ProjetosDeLei />
+        <PrestacaoContasMandato />
+        <InvestimentosPorArea />
+        <MapaAtuacao />
+        <PrincipaisEntregas />
+        <TimelineMandato />
+        <ImpactoEstado />
         <Numeros />
         <Contas />
         <Mapa />
