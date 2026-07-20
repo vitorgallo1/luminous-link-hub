@@ -156,11 +156,12 @@ function Nav() {
   }, []);
   const links = [
     ["Trajetória", "#trajetoria"],
-    ["Números", "#numeros"],
-    ["Prestação de Contas", "#contas"],
+    ["Mandato", "#atuacao"],
+    ["Projetos", "#projetos"],
+    ["Prestação", "#prestacao"],
+    ["Entregas", "#entregas"],
+    ["Mapa", "#mapa-atuacao"],
     ["Causas", "#causas"],
-    ["Mapa", "#mapa"],
-    ["Contato", "#rodape"],
   ];
   return (
     <header
