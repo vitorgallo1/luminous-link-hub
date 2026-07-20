@@ -1712,16 +1712,6 @@ function Footer() {
 
 /* ============ Page ============ */
 
-import {
-  AtuacaoParlamentar,
-  ProjetosDeLei,
-  PrestacaoContasMandato,
-  InvestimentosPorArea,
-  MapaAtuacao,
-  PrincipaisEntregas,
-  TimelineMandato,
-  ImpactoEstado,
-} from "@/components/mandate-sections";
 
 function LandingPage() {
   return (
