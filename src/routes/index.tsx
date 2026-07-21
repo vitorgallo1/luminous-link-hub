@@ -57,6 +57,11 @@ import {
   PrincipaisEntregas,
   TimelineMandato,
   ImpactoEstado,
+  AtuacaoAlerj,
+  ProjetosSociais,
+  ProjetosLeiDestaque,
+  GaleriaCategorias,
+  Legado,
 } from "@/components/mandate-sections";
 
 export const Route = createFileRoute("/")({
