@@ -690,11 +690,11 @@ export function InvestimentosPorArea() {
 
 /* ============ 5. MAPA DE ATUAÇÃO ============ */
 
-type Cidade = {
+export type Cidade = {
   id: string;
   nome: string;
-  x: number;
-  y: number;
+  lat: number;
+  lng: number;
   emendas: number;
   valor: number;
   investimentos: string[];
@@ -706,8 +706,8 @@ const CIDADES: Cidade[] = [
   {
     id: "sjb",
     nome: "São João da Barra",
-    x: 82,
-    y: 34,
+    lat: -21.6395,
+    lng: -41.0511,
     emendas: 4,
     valor: 620000,
     investimentos: ["Educação", "Saúde", "Cultura"],
@@ -717,8 +717,8 @@ const CIDADES: Cidade[] = [
   {
     id: "campos",
     nome: "Campos dos Goytacazes",
-    x: 78,
-    y: 28,
+    lat: -21.7545,
+    lng: -41.3244,
     emendas: 6,
     valor: 1450000,
     investimentos: ["Apoio ao HU-UENF", "Educação", "Assistência Social"],
@@ -728,8 +728,8 @@ const CIDADES: Cidade[] = [
   {
     id: "sfi",
     nome: "São Francisco de Itabapoana",
-    x: 84,
-    y: 24,
+    lat: -21.5407,
+    lng: -41.1097,
     emendas: 3,
     valor: 480000,
     investimentos: ["Ambulância", "Educação"],
@@ -739,8 +739,8 @@ const CIDADES: Cidade[] = [
   {
     id: "paty",
     nome: "Paty do Alferes",
-    x: 30,
-    y: 40,
+    lat: -22.4227,
+    lng: -43.4278,
     emendas: 2,
     valor: 260000,
     investimentos: ["Assistência Social", "Cultura"],
@@ -750,8 +750,8 @@ const CIDADES: Cidade[] = [
   {
     id: "quissama",
     nome: "Quissamã",
-    x: 74,
-    y: 38,
+    lat: -22.105,
+    lng: -41.4692,
     emendas: 3,
     valor: 380000,
     investimentos: ["Educação", "Esporte"],
@@ -761,8 +761,8 @@ const CIDADES: Cidade[] = [
   {
     id: "itaborai",
     nome: "Itaboraí",
-    x: 52,
-    y: 62,
+    lat: -22.7444,
+    lng: -42.8594,
     emendas: 4,
     valor: 620000,
     investimentos: ["Saúde", "Cultura"],
@@ -770,8 +770,8 @@ const CIDADES: Cidade[] = [
   {
     id: "miracema",
     nome: "Miracema",
-    x: 58,
-    y: 22,
+    lat: -21.4189,
+    lng: -42.1978,
     emendas: 2,
     valor: 240000,
     investimentos: ["Educação", "Assistência Social"],
@@ -779,8 +779,8 @@ const CIDADES: Cidade[] = [
   {
     id: "porciuncula",
     nome: "Porciúncula",
-    x: 62,
-    y: 14,
+    lat: -20.9765,
+    lng: -42.0511,
     emendas: 2,
     valor: 210000,
     investimentos: ["Cultura", "Educação"],
@@ -788,8 +788,8 @@ const CIDADES: Cidade[] = [
   {
     id: "niguacu",
     nome: "Nova Iguaçu",
-    x: 42,
-    y: 60,
+    lat: -22.7592,
+    lng: -43.4511,
     emendas: 5,
     valor: 780000,
     investimentos: ["Saúde", "Educação", "Inclusão"],
@@ -797,8 +797,8 @@ const CIDADES: Cidade[] = [
   {
     id: "rj",
     nome: "Rio de Janeiro",
-    x: 46,
-    y: 70,
+    lat: -22.9068,
+    lng: -43.1729,
     emendas: 8,
     valor: 1620000,
     investimentos: ["Saúde", "Cultura", "Inclusão", "Assistência Social"],
@@ -807,6 +807,20 @@ const CIDADES: Cidade[] = [
 
 export function MapaAtuacao() {
   const [sel, setSel] = useState<Cidade | null>(CIDADES[0]);
+  const [RealMap, setRealMap] = useState<typeof import("./real-map").default | null>(
+    null,
+  );
+
+  useEffect(() => {
+    let alive = true;
+    import("./real-map").then((mod) => {
+      if (alive) setRealMap(() => mod.default);
+    });
+    return () => {
+      alive = false;
+    };
+  }, []);
+
   return (
     <section id="mapa-atuacao" className="bg-secondary py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
@@ -823,57 +837,14 @@ export function MapaAtuacao() {
 
         <div className="mt-14 grid gap-6 lg:grid-cols-[1.6fr_1fr]">
           <div className="relative overflow-hidden rounded-3xl border border-border bg-navy-deep p-4 shadow-elegant sm:p-8">
-            <div className="relative aspect-[4/3] w-full">
-              <svg viewBox="0 0 100 75" className="h-full w-full">
-                {/* stylized RJ silhouette */}
-                <path
-                  d="M8 55 Q14 40 22 38 Q30 30 38 32 Q46 24 56 22 Q66 18 74 22 Q86 20 92 30 Q94 42 88 50 Q80 60 68 62 Q54 68 40 66 Q24 68 14 62 Z"
-                  fill="oklch(1 0 0 / 0.06)"
-                  stroke="oklch(0.79 0.13 85 / 0.4)"
-                  strokeWidth="0.4"
-                />
-                {CIDADES.map((c) => {
-                  const active = sel?.id === c.id;
-                  return (
-                    <g
-                      key={c.id}
-                      onClick={() => setSel(c)}
-                      className="cursor-pointer"
-                    >
-                      <motion.circle
-                        cx={c.x}
-                        cy={c.y}
-                        r={active ? 2.4 : 1.6}
-                        fill={active ? "var(--gold)" : "var(--green)"}
-                        stroke="white"
-                        strokeWidth="0.4"
-                        whileHover={{ scale: 1.4 }}
-                      />
-                      {active && (
-                        <motion.circle
-                          cx={c.x}
-                          cy={c.y}
-                          r={4}
-                          fill="none"
-                          stroke="var(--gold)"
-                          strokeWidth="0.4"
-                          animate={{ r: [3, 6], opacity: [0.8, 0] }}
-                          transition={{ duration: 1.4, repeat: Infinity }}
-                        />
-                      )}
-                      <text
-                        x={c.x + 2.5}
-                        y={c.y + 1}
-                        fontSize="2"
-                        fill={active ? "var(--gold)" : "white"}
-                        className="pointer-events-none font-medium"
-                      >
-                        {c.nome}
-                      </text>
-                    </g>
-                  );
-                })}
-              </svg>
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl">
+              {RealMap ? (
+                <RealMap cidades={CIDADES} sel={sel} onSelect={setSel} />
+              ) : (
+                <div className="grid h-full w-full place-items-center text-sm text-white/40">
+                  Carregando mapa…
+                </div>
+              )}
             </div>
           </div>
 
