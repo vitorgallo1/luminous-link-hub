@@ -698,6 +698,8 @@ type Cidade = {
   emendas: number;
   valor: number;
   investimentos: string[];
+  destaques?: string[];
+  instituicoes?: number;
 };
 
 const CIDADES: Cidade[] = [
@@ -709,6 +711,8 @@ const CIDADES: Cidade[] = [
     emendas: 4,
     valor: 620000,
     investimentos: ["Educação", "Saúde", "Cultura"],
+    destaques: ["Porto do Açu", "Centro terapêutico TEA", "Escolas rurais"],
+    instituicoes: 32,
   },
   {
     id: "campos",
@@ -718,6 +722,8 @@ const CIDADES: Cidade[] = [
     emendas: 6,
     valor: 1450000,
     investimentos: ["Apoio ao HU-UENF", "Educação", "Assistência Social"],
+    destaques: ["Reforma de UBS", "Apoio a APAE", "Educação técnica"],
+    instituicoes: 24,
   },
   {
     id: "sfi",
@@ -727,6 +733,8 @@ const CIDADES: Cidade[] = [
     emendas: 3,
     valor: 480000,
     investimentos: ["Ambulância", "Educação"],
+    destaques: ["Saúde da mulher", "Estradas vicinais", "Cultura popular"],
+    instituicoes: 12,
   },
   {
     id: "paty",
@@ -736,6 +744,8 @@ const CIDADES: Cidade[] = [
     emendas: 2,
     valor: 260000,
     investimentos: ["Assistência Social", "Cultura"],
+    destaques: ["Agricultura familiar", "Educação rural"],
+    instituicoes: 6,
   },
   {
     id: "quissama",
@@ -745,6 +755,8 @@ const CIDADES: Cidade[] = [
     emendas: 3,
     valor: 380000,
     investimentos: ["Educação", "Esporte"],
+    destaques: ["Assistência social", "Esporte comunitário"],
+    instituicoes: 8,
   },
   {
     id: "itaborai",
