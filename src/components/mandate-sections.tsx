@@ -966,14 +966,6 @@ export function MapaAtuacao() {
     </section>
   );
 }
-              </motion.aside>
-            )}
-          </AnimatePresence>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 /* ============ 6. PRINCIPAIS ENTREGAS ============ */
 
