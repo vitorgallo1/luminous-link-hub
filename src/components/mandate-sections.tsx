@@ -1216,3 +1216,500 @@ export function ImpactoEstado() {
     </section>
   );
 }
+
+/* ============ 9. ATUAÇÃO NA ALERJ ============ */
+
+const ALERJ_COMISSOES = [
+  {
+    icon: Users,
+    title: "Comissão da Criança, Adolescente e Idoso",
+    desc: "Defesa e proteção dos direitos das populações mais vulneráveis do estado.",
+    color: "gold" as const,
+  },
+  {
+    icon: HandHeart,
+    title: "Comissão de Defesa das Mulheres",
+    desc: "Enfrentamento à violência, autonomia econômica e políticas afirmativas.",
+    color: "green" as const,
+  },
+  {
+    icon: MapPin,
+    title: "Comissão de Turismo",
+    desc: "Fortalecimento do turismo como vetor de desenvolvimento regional.",
+    color: "navy" as const,
+  },
+  {
+    icon: Accessibility,
+    title: "Frente Parlamentar em Defesa das Pessoas com Autismo",
+    desc: "Coordenação da articulação política em defesa das pessoas com TEA no Rio.",
+    color: "gold" as const,
+  },
+];
+
+export function AtuacaoAlerj() {
+  return (
+    <section id="alerj" className="relative bg-secondary py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <Reveal className="mx-auto max-w-3xl text-center">
+          <Eyebrow>ALERJ · Comissões</Eyebrow>
+          <h2 className="mt-5 font-display text-4xl font-black text-navy sm:text-5xl">
+            Presença ativa na{" "}
+            <span className="text-gradient-gold">Assembleia Legislativa</span>
+          </h2>
+          <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
+            Participação em comissões estratégicas e coordenação da frente
+            parlamentar em defesa das pessoas com autismo.
+          </p>
+        </Reveal>
+
+        <div className="mt-16 grid gap-6 sm:grid-cols-2">
+          {ALERJ_COMISSOES.map((c, i) => {
+            const cls = colorClasses(c.color);
+            const Icon = c.icon;
+            return (
+              <Reveal key={c.title} delay={i * 0.06}>
+                <div className="group relative flex items-start gap-5 overflow-hidden rounded-3xl border border-border bg-card p-8 shadow-soft transition-all duration-500 hover:-translate-y-1 hover:shadow-elegant">
+                  <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-gold/5 transition-transform duration-500 group-hover:scale-125" />
+                  <div
+                    className={`relative grid h-14 w-14 shrink-0 place-items-center rounded-2xl ${cls.icon}`}
+                  >
+                    <Icon className="h-7 w-7" />
+                  </div>
+                  <div className="relative">
+                    <h3 className="font-display text-xl font-bold text-navy">
+                      {c.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                      {c.desc}
+                    </p>
+                  </div>
+                </div>
+              </Reveal>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ============ 10. PROJETOS SOCIAIS ============ */
+
+const PROJETOS_SOCIAIS = [
+  {
+    icon: Sparkles,
+    title: "Projeto Semear",
+    desc: "Iniciativa de formação, cidadania e oportunidades para crianças e jovens em situação de vulnerabilidade.",
+    tag: "Formação",
+    color: "gold" as const,
+  },
+  {
+    icon: HandHeart,
+    title: "Chácara da Inclusão",
+    desc: "Espaço terapêutico e de convivência para pessoas com TEA e suas famílias, com atividades adaptadas.",
+    tag: "Inclusão",
+    color: "green" as const,
+  },
+  {
+    icon: Users,
+    title: "Banquinha da Inclusão",
+    desc: "Ponto de comercialização e geração de renda para famílias atípicas e empreendedores da inclusão.",
+    tag: "Renda",
+    color: "navy" as const,
+  },
+  {
+    icon: Building2,
+    title: "APAE",
+    desc: "Apoio contínuo às Associações de Pais e Amigos dos Excepcionais em diversos municípios fluminenses.",
+    tag: "Parceria",
+    color: "gold" as const,
+  },
+];
+
+export function ProjetosSociais() {
+  return (
+    <section id="sociais" className="relative bg-background py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <Reveal className="mx-auto max-w-3xl text-center">
+          <Eyebrow>Ação social · Território</Eyebrow>
+          <h2 className="mt-5 font-display text-4xl font-black text-navy sm:text-5xl">
+            Projetos que <span className="text-gradient-gold">acolhem</span>
+          </h2>
+          <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
+            Iniciativas que nasceram do território e continuam transformando
+            vidas dentro e fora do mandato.
+          </p>
+        </Reveal>
+
+        <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {PROJETOS_SOCIAIS.map((p, i) => {
+            const cls = colorClasses(p.color);
+            const Icon = p.icon;
+            return (
+              <Reveal key={p.title} delay={i * 0.06}>
+                <div className="group relative h-full overflow-hidden rounded-3xl border border-border bg-card p-6 shadow-soft transition-all duration-500 hover:-translate-y-1 hover:shadow-elegant">
+                  <div
+                    className={`grid h-14 w-14 place-items-center rounded-2xl ${cls.icon}`}
+                  >
+                    <Icon className="h-7 w-7" />
+                  </div>
+                  <span
+                    className={`mt-5 inline-block rounded-full border px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] ${cls.badge}`}
+                  >
+                    {p.tag}
+                  </span>
+                  <h3 className="mt-3 font-display text-xl font-bold text-navy">
+                    {p.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    {p.desc}
+                  </p>
+                </div>
+              </Reveal>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ============ 11. PROJETOS DE LEI EM DESTAQUE (FILTRÁVEL) ============ */
+
+type PLDestaque = {
+  categoria:
+    | "Inclusão"
+    | "Saúde"
+    | "Mulheres"
+    | "Educação"
+    | "Agricultura"
+    | "Cultura";
+  titulo: string;
+  resumo: string;
+};
+
+const PL_DESTAQUES: PLDestaque[] = [
+  {
+    categoria: "Mulheres",
+    titulo: "Caderneta da Mulher no Climatério e Menopausa",
+    resumo:
+      "Instrumento oficial para acompanhamento da saúde da mulher nas fases do climatério e menopausa.",
+  },
+  {
+    categoria: "Inclusão",
+    titulo: "Programa para gestantes com TEA",
+    resumo:
+      "Cria protocolo especializado de acolhimento e acompanhamento pré-natal para gestantes autistas.",
+  },
+  {
+    categoria: "Inclusão",
+    titulo: "Selo Templo Religioso Amigo do Autista",
+    resumo:
+      "Certifica templos que oferecem ambientes acolhedores, sensoriais e inclusivos.",
+  },
+  {
+    categoria: "Saúde",
+    titulo: "Cuidados Paliativos",
+    resumo:
+      "Amplia o acesso a cuidados paliativos na rede pública, com dignidade e alívio da dor.",
+  },
+  {
+    categoria: "Agricultura",
+    titulo: "Leite da Agricultura Familiar nas Escolas",
+    resumo:
+      "Garante que o leite servido nas escolas venha da agricultura familiar fluminense.",
+  },
+  {
+    categoria: "Cultura",
+    titulo: "Cultura Oceânica",
+    resumo:
+      "Introduz a Cultura Oceânica na educação e nas políticas públicas do estado.",
+  },
+  {
+    categoria: "Educação",
+    titulo: "Atividades de conscientização sobre TEA nas escolas",
+    resumo:
+      "Promove a inclusão desde a educação básica com formação e sensibilização.",
+  },
+  {
+    categoria: "Saúde",
+    titulo: "Transparência nos planos de saúde",
+    resumo:
+      "Obriga divulgação clara sobre cobertura de terapias e tratamentos para TEA.",
+  },
+];
+
+const PL_FILTROS: (PLDestaque["categoria"] | "Todos")[] = [
+  "Todos",
+  "Inclusão",
+  "Saúde",
+  "Mulheres",
+  "Educação",
+  "Agricultura",
+  "Cultura",
+];
+
+export function ProjetosLeiDestaque() {
+  const [filtro, setFiltro] =
+    useState<(typeof PL_FILTROS)[number]>("Todos");
+  const lista =
+    filtro === "Todos"
+      ? PL_DESTAQUES
+      : PL_DESTAQUES.filter((p) => p.categoria === filtro);
+  return (
+    <section id="pl-destaque" className="relative bg-secondary py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <Reveal className="mx-auto max-w-3xl text-center">
+          <Eyebrow>Legislativo · Destaques</Eyebrow>
+          <h2 className="mt-5 font-display text-4xl font-black text-navy sm:text-5xl">
+            Principais <span className="text-gradient-gold">Projetos de Lei</span>
+          </h2>
+          <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
+            Filtre por área e conheça as propostas que estão mudando a vida do
+            fluminense.
+          </p>
+        </Reveal>
+
+        <div className="mt-10 flex flex-wrap justify-center gap-2">
+          {PL_FILTROS.map((f) => {
+            const active = filtro === f;
+            return (
+              <button
+                key={f}
+                onClick={() => setFiltro(f)}
+                className={`rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] transition ${
+                  active
+                    ? "border-transparent bg-navy text-white shadow-elegant"
+                    : "border-navy/20 bg-white text-navy hover:border-gold/60 hover:text-navy"
+                }`}
+              >
+                {f}
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <AnimatePresence mode="popLayout">
+            {lista.map((p, i) => (
+              <motion.div
+                key={p.titulo}
+                layout
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.35, delay: i * 0.03 }}
+                className="group relative overflow-hidden rounded-3xl border border-border bg-card p-6 shadow-soft transition-all hover:-translate-y-1 hover:shadow-elegant"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="inline-block rounded-full border border-gold/30 bg-gold/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-navy">
+                    {p.categoria}
+                  </span>
+                  <Scale className="h-5 w-5 text-gold" />
+                </div>
+                <h3 className="mt-4 font-display text-lg font-bold leading-snug text-navy">
+                  {p.titulo}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  {p.resumo}
+                </p>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ============ 12. GALERIA POR CATEGORIAS ============ */
+
+type FotoCat = "Alerj" | "Municípios" | "Educação" | "Saúde" | "Inclusão" | "Eventos";
+
+export function GaleriaCategorias({
+  imagens,
+}: {
+  imagens: { src: string; alt: string; cat: FotoCat }[];
+}) {
+  const cats: ("Todas" | FotoCat)[] = [
+    "Todas",
+    "Alerj",
+    "Municípios",
+    "Educação",
+    "Saúde",
+    "Inclusão",
+    "Eventos",
+  ];
+  const [cat, setCat] = useState<(typeof cats)[number]>("Todas");
+  const [open, setOpen] = useState<number | null>(null);
+  const filtered =
+    cat === "Todas" ? imagens : imagens.filter((i) => i.cat === cat);
+  return (
+    <section id="galeria-categorias" className="bg-background py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <Reveal className="mx-auto max-w-3xl text-center">
+          <Eyebrow>Registros · Território</Eyebrow>
+          <h2 className="mt-5 font-display text-4xl font-black text-navy sm:text-5xl">
+            Galeria por <span className="text-gradient-gold">categoria</span>
+          </h2>
+          <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
+            Momentos do mandato organizados por eixos de atuação.
+          </p>
+        </Reveal>
+
+        <div className="mt-10 flex flex-wrap justify-center gap-2">
+          {cats.map((c) => {
+            const active = cat === c;
+            return (
+              <button
+                key={c}
+                onClick={() => setCat(c)}
+                className={`rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] transition ${
+                  active
+                    ? "border-transparent bg-navy text-white shadow-elegant"
+                    : "border-navy/20 bg-white text-navy hover:border-gold/60"
+                }`}
+              >
+                {c}
+              </button>
+            );
+          })}
+        </div>
+
+        <motion.div layout className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+          <AnimatePresence mode="popLayout">
+            {filtered.map((g, i) => (
+              <motion.button
+                key={g.src + i}
+                layout
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.3, delay: i * 0.02 }}
+                whileHover={{ scale: 1.02 }}
+                onClick={() => setOpen(i)}
+                className="group relative aspect-square overflow-hidden rounded-2xl border border-border shadow-soft"
+              >
+                <img
+                  src={g.src}
+                  alt={g.alt}
+                  loading="lazy"
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy-deep/90 via-navy-deep/40 to-transparent p-3 opacity-0 transition-opacity group-hover:opacity-100">
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-gold">
+                    {g.cat}
+                  </span>
+                  <div className="mt-1 line-clamp-2 text-xs text-white">
+                    {g.alt}
+                  </div>
+                </div>
+              </motion.button>
+            ))}
+          </AnimatePresence>
+        </motion.div>
+      </div>
+
+      <AnimatePresence>
+        {open !== null && filtered[open] && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setOpen(null)}
+            className="fixed inset-0 z-[100] grid place-items-center bg-navy-deep/95 p-4 backdrop-blur-xl"
+          >
+            <motion.img
+              initial={{ scale: 0.9 }}
+              animate={{ scale: 1 }}
+              src={filtered[open].src}
+              alt={filtered[open].alt}
+              className="max-h-[90vh] max-w-full rounded-2xl shadow-elegant"
+            />
+            <button
+              onClick={() => setOpen(null)}
+              className="absolute right-6 top-6 grid h-12 w-12 place-items-center rounded-full bg-white/10 text-white backdrop-blur hover:bg-white/20"
+            >
+              <X className="h-5 w-5" />
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </section>
+  );
+}
+
+/* ============ 13. LEGADO ============ */
+
+export function Legado({ image }: { image: string }) {
+  return (
+    <section id="legado" className="relative overflow-hidden bg-secondary py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="grid items-center gap-12 lg:grid-cols-2">
+          <Reveal>
+            <div className="relative">
+              <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-gold/30 via-transparent to-green/20 blur-2xl" />
+              <div className="relative overflow-hidden rounded-[2rem] border border-border shadow-elegant">
+                <img
+                  src={image}
+                  alt="Carla Machado ao longo da trajetória pública"
+                  className="h-full w-full object-cover"
+                />
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy-deep/80 to-transparent p-6">
+                  <div className="text-xs font-semibold uppercase tracking-[0.22em] text-gold">
+                    Legado
+                  </div>
+                  <div className="mt-1 font-display text-lg font-bold text-white">
+                    43 anos dedicados às pessoas do Rio
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <Eyebrow>Trajetória · Compromisso</Eyebrow>
+            <h2 className="mt-5 font-display text-4xl font-black leading-tight text-navy sm:text-5xl">
+              Uma vida inteira ao <span className="text-gradient-gold">lado das pessoas</span>
+            </h2>
+            <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
+              De educadora e primeira-dama a deputada estadual, Carla Machado
+              construiu uma trajetória marcada pela escuta, pela inclusão e pela
+              defesa incansável de quem mais precisa. São mais de quatro décadas
+              transformando políticas públicas em cuidado real, com o coração
+              sempre voltado ao interior e às causas humanas.
+            </p>
+            <div className="mt-8 grid grid-cols-3 gap-4">
+              {[
+                { n: "43", l: "anos de vida pública" },
+                { n: "92", l: "municípios impactados" },
+                { n: "40+", l: "emendas destinadas" },
+              ].map((s) => (
+                <div
+                  key={s.l}
+                  className="rounded-2xl border border-border bg-card p-4 text-center shadow-soft"
+                >
+                  <div className="font-display text-3xl font-black text-navy">
+                    {s.n}
+                  </div>
+                  <div className="mt-1 text-[11px] font-medium uppercase tracking-[0.18em] text-muted-foreground">
+                    {s.l}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-8">
+              <a
+                href="#trajetoria"
+                className="group inline-flex items-center gap-3 rounded-full bg-navy px-7 py-3.5 text-sm font-semibold text-white shadow-elegant transition hover:bg-navy-deep"
+              >
+                Conheça a trajetória completa
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </a>
+            </div>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  );
+}
