@@ -1678,7 +1678,7 @@ function Footer() {
                 ["Números", "#numeros"],
                 ["Prestação de Contas", "#contas"],
                 ["Causas", "#causas"],
-                ["Mapa", "#mapa"],
+                ["Mapa", "#mapa-atuacao"],
               ].map(([label, href]) => (
                 <li key={href}>
                   <a href={href} className="transition-colors hover:text-gold">
