@@ -928,6 +928,44 @@ export function MapaAtuacao() {
                     ))}
                   </ul>
                 </div>
+
+                {sel.destaques && sel.destaques.length > 0 && (
+                  <div className="mt-6">
+                    <div className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">
+                      Destaques locais
+                    </div>
+                    <ul className="mt-3 space-y-2">
+                      {sel.destaques.map((h) => (
+                        <li
+                          key={h}
+                          className="flex items-start gap-2 text-sm text-navy/85"
+                        >
+                          <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
+                          {h}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {typeof sel.instituicoes === "number" && (
+                  <div className="mt-6 flex items-center justify-between border-t border-border pt-4">
+                    <div className="text-sm text-muted-foreground">
+                      Instituições beneficiadas
+                    </div>
+                    <div className="font-display text-2xl font-black text-navy">
+                      {sel.instituicoes}
+                    </div>
+                  </div>
+                )}
+              </motion.aside>
+            )}
+          </AnimatePresence>
+        </div>
+      </div>
+    </section>
+  );
+}
               </motion.aside>
             )}
           </AnimatePresence>
