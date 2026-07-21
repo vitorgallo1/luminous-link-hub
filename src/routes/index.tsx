@@ -1567,7 +1567,7 @@ function LandingPage() {
         <ImpactoEstado />
         <Numeros />
         <Contas />
-        <Mapa />
+        
         <Causas />
         <Galeria />
         <GaleriaCategorias
