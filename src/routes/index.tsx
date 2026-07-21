@@ -57,6 +57,11 @@ import {
   PrincipaisEntregas,
   TimelineMandato,
   ImpactoEstado,
+  AtuacaoAlerj,
+  ProjetosSociais,
+  ProjetosLeiDestaque,
+  GaleriaCategorias,
+  Legado,
 } from "@/components/mandate-sections";
 
 export const Route = createFileRoute("/")({
@@ -1731,7 +1736,10 @@ function LandingPage() {
         <Hero />
         <Trajetoria />
         <AtuacaoParlamentar />
+        <AtuacaoAlerj />
+        <ProjetosSociais />
         <ProjetosDeLei />
+        <ProjetosLeiDestaque />
         <PrestacaoContasMandato />
         <InvestimentosPorArea />
         <MapaAtuacao />
@@ -1743,9 +1751,26 @@ function LandingPage() {
         <Mapa />
         <Causas />
         <Galeria />
+        <GaleriaCategorias
+          imagens={[
+            { src: eventImg, alt: "Discurso na tribuna da ALERJ", cat: "Alerj" },
+            { src: peopleImg, alt: "Encontro com moradoras", cat: "Municípios" },
+            { src: universityImg, alt: "Escola atendida", cat: "Educação" },
+            { src: hospitalImg, alt: "Visita a hospital", cat: "Saúde" },
+            { src: ctaImg, alt: "Inauguração em município", cat: "Eventos" },
+            { src: peopleImg, alt: "Abraço em mãe atípica", cat: "Inclusão" },
+            { src: agriImg, alt: "Agricultura familiar", cat: "Municípios" },
+            { src: heroImg, alt: "Retrato institucional", cat: "Alerj" },
+            { src: universityImg, alt: "Entrega de equipamentos", cat: "Educação" },
+            { src: hospitalImg, alt: "Ambulância entregue", cat: "Saúde" },
+            { src: peopleImg, alt: "Ação com comunidade", cat: "Inclusão" },
+            { src: eventImg, alt: "Evento oficial", cat: "Eventos" },
+          ]}
+        />
         <Depoimentos />
         <Video />
         <Feed />
+        <Legado image={heroImg} />
         <CTAFinal />
       </main>
       <Footer />
