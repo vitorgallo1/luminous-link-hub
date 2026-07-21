@@ -5,6 +5,8 @@ import {
   useInView,
   useScroll,
   useTransform,
+  useMotionValue,
+  useSpring,
   AnimatePresence,
 } from "motion/react";
 import {
@@ -34,23 +36,25 @@ import {
   X,
   Calendar,
   ShieldCheck,
+  Star,
 } from "lucide-react";
 
 import heroAsset from "@/assets/carla-portrait-real.jpg.asset.json";
+import fotoHeroImg from "@/assets/fotohero.jpeg";
+import heroWallpaper from "@/assets/wallpaperhero.png";
 import ctaAsset from "@/assets/carla-cta-real.jpg.asset.json";
 import peopleAsset from "@/assets/carla-people-real.jpg.asset.json";
 import eventAsset from "@/assets/carla-event.jpg.asset.json";
 import hospitalImg from "@/assets/achievement-hospital.jpg";
 import universityImg from "@/assets/achievement-university.jpg";
 import agriImg from "@/assets/achievement-agri.jpg";
-const heroImg = heroAsset.url;
+const heroImg = fotoHeroImg;
 const ctaImg = ctaAsset.url;
 const peopleImg = peopleAsset.url;
 const eventImg = eventAsset.url;
 void eventImg;
 import {
   AtuacaoParlamentar,
-  ProjetosDeLei,
   PrestacaoContasMandato,
   InvestimentosPorArea,
   MapaAtuacao,
@@ -63,6 +67,7 @@ import {
   GaleriaCategorias,
   Legado,
 } from "@/components/mandate-sections";
+import FotoHero from "@/components/ui/fotohero";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -281,39 +286,74 @@ function Hero() {
     target: ref,
     offset: ["start start", "end start"],
   });
-  const yImg = useTransform(scrollYProgress, [0, 1], [0, 120]);
-  const yBg = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  const yImg = useTransform(scrollYProgress, [0, 1], [0, 100]);
+  const yBg = useTransform(scrollYProgress, [0, 1], [0, 170]);
+
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const springX = useSpring(mouseX, { stiffness: 55, damping: 20, mass: 0.6 });
+  const springY = useSpring(mouseY, { stiffness: 55, damping: 20, mass: 0.6 });
+  const glowX = useTransform(springX, [-0.5, 0.5], [-50, 50]);
+  const glowY = useTransform(springY, [-0.5, 0.5], [-50, 50]);
+  const tiltX = useTransform(springY, [-0.5, 0.5], [7, -7]);
+  const tiltY = useTransform(springX, [-0.5, 0.5], [-7, 7]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    mouseX.set((e.clientX - rect.left) / rect.width - 0.5);
+    mouseY.set((e.clientY - rect.top) / rect.height - 0.5);
+  };
+  const handleMouseLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+  };
 
   const indicators = [
-    { label: "Anos de vida pública", value: "43" },
-    { label: "Mandatos como Prefeita", value: "4" },
-    { label: "Deputada Estadual", value: "Alerj" },
-    { label: "Pioneira em São João da Barra", value: "1ª mulher" },
+    { label: "Anos de vida pública", value: "43", icon: Users, gold: true },
+    { label: "Mandatos como Prefeita", value: "4", icon: Building2, gold: true },
+    { label: "Deputada Estadual", value: "Alerj", icon: Landmark, gold: true },
+    { label: "Pioneira em São João da Barra", value: "1ª mulher", icon: Star, gold: true },
   ];
 
   return (
     <section
       id="top"
       ref={ref}
-      className="relative isolate min-h-screen overflow-hidden gradient-hero pt-28 pb-16 sm:pt-32"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="relative isolate min-h-screen overflow-hidden bg-navy-deep pt-28 pb-16 sm:pt-32"
     >
-      {/* Abstract shapes */}
+      {/* Cinematic layered background */}
       <motion.div style={{ y: yBg }} className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-40 top-16 h-[420px] w-[420px] rounded-full bg-gold/25 blur-[110px]" />
-        <div className="absolute right-[-160px] top-1/3 h-[520px] w-[520px] rounded-full bg-green/20 blur-[120px]" />
-        <div className="absolute left-1/2 bottom-[-160px] h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-navy-soft/50 blur-[120px]" />
-        <svg
-          className="absolute inset-0 h-full w-full opacity-[0.05]"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <defs>
-            <pattern id="grid" width="42" height="42" patternUnits="userSpaceOnUse">
-              <path d="M 42 0 L 0 0 0 42" fill="none" stroke="white" strokeWidth="0.6" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#grid)" />
-        </svg>
-        {/* Curved gold line */}
+        {/* Rio skyline wallpaper base */}
+        <img
+          src={heroWallpaper}
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+
+        {/* Contrast overlay: darker over the text column, lighter toward the portrait */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(100deg, oklch(0.19 0.07 258 / 1) 0%, oklch(0.19 0.07 258 / 0.85) 45%, oklch(0.19 0.07 258 / 0.35) 75%)",
+          }}
+        />
+
+        {/* Vignette */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(130% 100% at 50% 28%, transparent 30%, oklch(0.12 0.05 258 / 0.7) 100%)",
+          }}
+        />
+
+        {/* Large radial glow behind the portrait */}
+        <div className="absolute right-[4%] top-1/2 hidden h-[720px] w-[720px] -translate-y-1/2 rounded-full bg-gold/15 blur-[170px] lg:block" />
+
+        {/* Thin golden curved lines crossing diagonally */}
         <svg
           className="absolute inset-0 h-full w-full"
           viewBox="0 0 1200 900"
@@ -325,8 +365,17 @@ function Hero() {
             stroke="url(#goldLine)"
             strokeWidth="1.2"
             initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 0.6 }}
+            animate={{ pathLength: 1, opacity: 0.55 }}
             transition={{ duration: 2.2, ease: "easeOut" }}
+          />
+          <motion.path
+            d="M -80 150 Q 320 60 650 210 T 1350 100"
+            fill="none"
+            stroke="url(#goldLine2)"
+            strokeWidth="1"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: 1, opacity: 0.35 }}
+            transition={{ duration: 2.4, ease: "easeOut", delay: 0.3 }}
           />
           <defs>
             <linearGradient id="goldLine" x1="0" x2="1" y1="0" y2="0">
@@ -334,144 +383,206 @@ function Hero() {
               <stop offset="50%" stopColor="oklch(0.79 0.13 85 / 0.9)" />
               <stop offset="100%" stopColor="oklch(0.79 0.13 85 / 0)" />
             </linearGradient>
+            <linearGradient id="goldLine2" x1="0" x2="1" y1="0" y2="0">
+              <stop offset="0%" stopColor="oklch(0.79 0.13 85 / 0)" />
+              <stop offset="50%" stopColor="oklch(0.79 0.13 85 / 0.7)" />
+              <stop offset="100%" stopColor="oklch(0.79 0.13 85 / 0)" />
+            </linearGradient>
           </defs>
         </svg>
       </motion.div>
 
-      <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:gap-12">
-        {/* Text side */}
-        <div className="order-2 lg:order-1">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <SectionEyebrow>Deputada Estadual · Rio de Janeiro</SectionEyebrow>
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.15 }}
-            className="mt-6 font-display text-4xl font-black leading-[1.05] text-white sm:text-5xl lg:text-6xl xl:text-7xl"
-          >
-            Experiência para fazer.
-            <br />
-            <span className="text-gradient-gold">Sensibilidade para cuidar.</span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.35 }}
-            className="mt-6 max-w-xl text-base leading-relaxed text-white/80 sm:text-lg"
-          >
-            Há mais de <strong className="text-white">43 anos</strong> dedicando sua
-            vida ao serviço público, Carla Machado construiu uma trajetória marcada
-            por trabalho, resultados e compromisso com as pessoas. Hoje, segue
-            representando o interior do Rio de Janeiro na Alerj, defendendo quem mais
-            precisa.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.5 }}
-            className="mt-8 flex flex-wrap items-center gap-3"
-          >
-            <a
-              href="#trajetoria"
-              className="group inline-flex items-center gap-2 rounded-full gradient-gold px-7 py-3.5 text-sm font-bold text-navy-deep shadow-gold transition-transform hover:scale-[1.03]"
+      <div className="relative mx-auto w-full max-w-[1760px] pl-4 pr-4 sm:pl-6 sm:pr-6 lg:pl-10 lg:pr-6 xl:pl-16 xl:pr-8 2xl:pl-20 2xl:pr-10">
+        <div className="grid grid-cols-1 items-stretch gap-14 lg:grid-cols-[1fr_1.15fr] lg:gap-16 xl:gap-20">
+          {/* Text side */}
+          <div className="order-2 lg:order-1 lg:pl-4 xl:pl-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
             >
-              Conheça a trajetória
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </a>
-            <a
-              href="#contas"
-              className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/5 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur transition-colors hover:border-gold/60 hover:text-gold"
-            >
-              <ShieldCheck className="h-4 w-4" />
-              Prestação de Contas
-            </a>
-          </motion.div>
-
-          {/* Indicators */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.7 }}
-            className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4"
-          >
-            {indicators.map((i) => (
-              <div
-                key={i.label}
-                className="glass rounded-2xl p-4 transition-transform hover:-translate-y-1"
-              >
-                <div className="font-display text-2xl font-black text-gold">
-                  {i.value}
-                </div>
-                <div className="mt-1 text-[11px] font-medium leading-snug text-white/70">
-                  {i.label}
-                </div>
+              <div className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/5 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.22em] text-gold">
+                <MapPin className="h-3 w-3" />
+                Deputada Estadual · Rio de Janeiro
               </div>
-            ))}
+            </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.15 }}
+              className="mt-6 font-display font-extrabold leading-[0.95] tracking-tight text-white text-[40px] sm:text-[52px] lg:text-[68px] xl:text-[84px]"
+            >
+              Experiência
+              <br />
+              para fazer.
+              <br />
+              <span className="text-gradient-gold">
+                Sensibilidade
+                <br />
+                para cuidar.
+              </span>
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.35 }}
+              className="mt-6 max-w-[520px] text-[18px] leading-relaxed text-white/75"
+            >
+              Há mais de <strong className="text-white">43 anos</strong> dedicando sua
+              vida ao serviço público, Carla Machado construiu uma trajetória marcada
+              por trabalho, resultados e compromisso com as pessoas. Hoje, segue
+              representando o interior do Rio de Janeiro na Alerj, defendendo quem mais
+              precisa.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.5 }}
+              className="mt-8 flex flex-wrap items-center gap-3"
+            >
+              <a
+                href="#trajetoria"
+                className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full gradient-gold px-7 py-3.5 text-sm font-bold text-navy-deep shadow-gold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_50px_-12px_oklch(0.79_0.13_85/0.65)]"
+              >
+                Conheça a trajetória
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </a>
+              <a
+                href="#contas"
+                className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/5 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-gold/60 hover:bg-white/10 hover:text-gold"
+              >
+                <ShieldCheck className="h-4 w-4" />
+                Prestação de Contas
+              </a>
+            </motion.div>
+          </div>
+
+          {/* Portrait side */}
+          <motion.div
+            style={{ y: yImg }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+            className="order-1 lg:order-2 lg:h-full"
+          >
+            <div className="relative mx-auto max-w-md lg:h-full lg:max-w-none">
+              {/* Radial golden glow behind portrait, following cursor */}
+              <motion.div
+                style={{ x: glowX, y: glowY }}
+                className="pointer-events-none absolute inset-0 -z-10 blur-[110px]"
+              >
+                <div
+                  className="h-full w-full"
+                  style={{
+                    background:
+                      "radial-gradient(circle, oklch(0.79 0.13 85 / 0.22) 0%, transparent 70%)",
+                  }}
+                />
+              </motion.div>
+              {/* Small ambient glow matching the photo's own colors */}
+              <div className="pointer-events-none absolute -inset-3 -z-10 overflow-hidden rounded-[36px]">
+                <img
+                  src={heroImg}
+                  alt=""
+                  aria-hidden="true"
+                  className="h-full w-full scale-110 object-cover opacity-80 blur-2xl saturate-150"
+                  style={{ objectPosition: "78% 35%" }}
+                />
+              </div>
+
+              {/* Floating portrait */}
+              <motion.div
+                animate={{ y: [0, -14, 0] }}
+                transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+                style={{ rotateX: tiltX, rotateY: tiltY, transformPerspective: 1200 }}
+                className="relative lg:h-full"
+              >
+                <div className="relative aspect-[7/5] overflow-hidden rounded-[32px] border border-white/10 shadow-elegant lg:aspect-auto lg:h-full">
+                  <img
+                    src={heroImg}
+                    alt="Carla Machado, Deputada Estadual"
+                    width={1600}
+                    height={1068}
+                    className="h-full w-full object-cover"
+                    style={{ objectPosition: "78% 35%" }}
+                  />
+                  <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-navy-deep/70 to-transparent" />
+                  {/* Floating badge */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 1.1, duration: 0.6 }}
+                    className="absolute bottom-5 left-5 right-5 flex items-center gap-3 rounded-2xl border border-white/15 bg-navy-deep/70 p-3 backdrop-blur-xl"
+                  >
+                    <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl gradient-green">
+                      <MapPin className="h-5 w-5 text-white" />
+                    </div>
+                    <div className="min-w-0">
+                      <div className="text-[11px] font-semibold uppercase tracking-widest text-gold">
+                        Do interior para todo o Estado
+                      </div>
+                      <div className="truncate text-sm font-medium text-white/90">
+                        São João da Barra · Norte Fluminense
+                      </div>
+                    </div>
+                  </motion.div>
+                </div>
+
+                {/* Floating card - years */}
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 1.3, duration: 0.7 }}
+                  whileHover={{ y: -4 }}
+                  className="absolute -right-3 top-8 hidden rounded-2xl border border-gold/30 bg-white/95 p-4 shadow-elegant sm:block lg:-right-6"
+                >
+                  <div className="font-display text-3xl font-black text-navy">43</div>
+                  <div className="text-[10px] font-semibold uppercase tracking-widest text-navy/70">
+                    anos servindo
+                  </div>
+                </motion.div>
+              </motion.div>
+            </div>
           </motion.div>
         </div>
 
-        {/* Portrait side */}
+        {/* Indicators — full-width row beneath both columns */}
         <motion.div
-          style={{ y: yImg }}
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
-          className="order-1 lg:order-2"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.7 }}
+          className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4"
         >
-          <div className="relative mx-auto max-w-md lg:max-w-none">
-            {/* Halo frame */}
-            <div className="absolute -inset-4 rounded-[2.2rem] bg-gradient-to-br from-gold/40 via-transparent to-green/30 blur-2xl" />
-            <div className="relative overflow-hidden rounded-[2rem] border border-white/10 shadow-elegant">
-              <img
-                src={heroImg}
-                alt="Carla Machado, Deputada Estadual"
-                width={1024}
-                height={1408}
-                className="h-full w-full object-cover"
-              />
-              <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-navy-deep/70 to-transparent" />
-              {/* Floating badge */}
+          {indicators.map((i) => {
+            const Icon = i.icon;
+            return (
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.1, duration: 0.6 }}
-                className="absolute bottom-5 left-5 right-5 flex items-center gap-3 rounded-2xl border border-white/15 bg-navy-deep/70 p-3 backdrop-blur-xl"
+                key={i.label}
+                whileHover={{ y: -4 }}
+                transition={{ type: "spring", stiffness: 280, damping: 20 }}
+                className="flex items-center gap-3 rounded-2xl border border-white/15 bg-white/[0.03] p-5 transition-colors duration-300 hover:border-white/25"
               >
-                <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl gradient-green">
-                  <MapPin className="h-5 w-5 text-white" />
+                <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-white/25">
+                  <Icon className="h-4 w-4 text-white/70" />
                 </div>
                 <div className="min-w-0">
-                  <div className="text-[11px] font-semibold uppercase tracking-widest text-gold">
-                    Do interior para todo o Estado
+                  <div
+                    className={`font-display text-2xl font-black leading-none sm:text-3xl ${
+                      i.gold ? "text-gold" : "text-white"
+                    }`}
+                  >
+                    {i.value}
                   </div>
-                  <div className="truncate text-sm font-medium text-white/90">
-                    São João da Barra · Norte Fluminense
+                  <div className="mt-1.5 text-[11px] font-medium leading-snug text-white/60">
+                    {i.label}
                   </div>
                 </div>
               </motion.div>
-            </div>
-
-            {/* Floating card - years */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 1.3, duration: 0.7 }}
-              className="absolute -right-3 top-8 hidden rounded-2xl border border-gold/30 bg-white/95 p-4 shadow-elegant sm:block lg:-right-6"
-            >
-              <div className="font-display text-3xl font-black text-navy">43</div>
-              <div className="text-[10px] font-semibold uppercase tracking-widest text-navy/70">
-                anos servindo
-              </div>
-            </motion.div>
-          </div>
+            );
+          })}
         </motion.div>
       </div>
 
@@ -501,49 +612,56 @@ const timeline = [
   {
     year: "1982",
     title: "O início do serviço público",
-    text: "Aos primeiros passos, já dedicava seu tempo às causas coletivas em São João da Barra.",
+    text:
+      "A trajetória de Carla Machado no serviço público começou na área da Educação, onde atuou inicialmente como assessora e, posteriormente, como Secretária Municipal de Educação de São João da Barra. Professora de formação, sempre acreditou que a educação é o principal instrumento de transformação social. Desde os primeiros anos de sua vida pública, destacou-se pelo compromisso com a melhoria da qualidade do ensino, pela valorização dos profissionais da educação e pela construção de políticas públicas voltadas ao desenvolvimento humano e ao fortalecimento das comunidades.",
     icon: Sparkles,
     img: agriImg,
   },
   {
     year: "1992",
     title: "Fundação da APAE",
-    text: "Ajudou a fundar a APAE de São João da Barra, marcando o início de uma luta pela inclusão que atravessa toda a sua trajetória.",
+    text:
+      "Em 1992, Carla Machado participou da fundação da APAE de São João da Barra e tornou-se sua primeira presidente, iniciando uma das mais importantes frentes de atuação de sua vida pública. O trabalho desenvolvido junto às pessoas com deficiência e suas famílias consolidou uma trajetória marcada pelo acolhimento, pela inclusão e pela defesa dos direitos das pessoas com deficiência. Essa experiência tornou-se a base de sua atuação política e continua presente em suas iniciativas, projetos e ações voltadas à construção de uma sociedade mais acessível e inclusiva.",
     icon: HandHeart,
     img: hospitalImg,
   },
   {
     year: "1997",
     title: "Primeira mulher Presidente da Câmara",
-    text: "Pioneirismo que abriu caminho para outras mulheres na política do Norte Fluminense.",
+    text:
+      "Eleita vereadora em 1996, Carla Machado fez história ao se tornar a primeira mulher a presidir a Câmara Municipal de São João da Barra. Sua gestão foi marcada pelo fortalecimento do Poder Legislativo, pelo diálogo entre os parlamentares e pela aproximação da Câmara com a população. O pioneirismo nesse cargo representou um importante avanço para a participação feminina na política regional, abrindo caminho para que outras mulheres ocupassem espaços de liderança e decisão.",
     icon: Users,
     img: universityImg,
   },
   {
     year: "2001",
     title: "Primeira mulher Prefeita de São João da Barra",
-    text: "Eleita para transformar a cidade com gestão sensível, participativa e comprometida com resultados.",
+    text:
+      "Em 2004, Carla Machado foi eleita a primeira mulher prefeita da história de São João da Barra, iniciando um novo ciclo de desenvolvimento para o município. Sua gestão priorizou investimentos em infraestrutura urbana, educação, saúde, assistência social, cultura, turismo e valorização dos serviços públicos. Com planejamento e capacidade administrativa, implementou projetos que contribuíram para melhorar a qualidade de vida da população e preparar o município para um período de crescimento econômico.",
     icon: Landmark,
     img: peopleImg,
   },
   {
     year: "2001 – 2020",
     title: "Quatro mandatos como Prefeita",
-    text: "Décadas de trabalho ininterrupto: infraestrutura, saúde, educação, cultura e desenvolvimento do Porto do Açu.",
+    text:
+      "Ao longo de quatro mandatos, Carla Machado conduziu uma das administrações mais longevas da história de São João da Barra. Durante esse período, liderou importantes obras de infraestrutura, ampliou os investimentos na saúde e na educação, fortaleceu programas sociais e incentivou a cultura, o esporte e o turismo. Também acompanhou e participou das transformações provocadas pela instalação do Complexo Portuário do Açu, trabalhando para que o desenvolvimento econômico gerasse oportunidades, emprego e melhorias para a população local.",
     icon: Trophy,
     img: agriImg,
   },
   {
     year: "2023",
     title: "Deputada Estadual pela Alerj",
-    text: "Representa o interior do Rio de Janeiro na Assembleia Legislativa, com atuação forte por saúde, educação e inclusão.",
+    text:
+      "Eleita deputada estadual em 2022, Carla Machado passou a representar o Norte e o Noroeste Fluminense na Assembleia Legislativa do Estado do Rio de Janeiro. No Parlamento, atua na defesa dos municípios do interior, buscando investimentos, apresentando projetos de lei e destinando recursos para áreas essenciais como saúde, educação, assistência social, infraestrutura e desenvolvimento regional. Também integra importantes comissões permanentes da Alerj, fortalecendo sua atuação legislativa e fiscalizadora.",
     icon: Building2,
     img: hospitalImg,
   },
   {
     year: "2024",
     title: "Frente Parlamentar em Defesa das Pessoas com TEA",
-    text: "Cria a frente para dar voz e proteção às famílias atípicas em todo o Estado do Rio.",
+    text:
+      "Na Assembleia Legislativa, Carla Machado criou e coordena a Frente Parlamentar em Defesa das Pessoas com Transtorno do Espectro Autista (TEA), reunindo especialistas, entidades, famílias e representantes da sociedade civil para discutir e propor políticas públicas voltadas à inclusão. Além da atuação legislativa, desenvolve iniciativas como a Banquinha da Inclusão, promove audiências públicas e apresenta projetos que ampliam direitos, garantem acessibilidade e fortalecem o acolhimento das famílias atípicas. A pauta da inclusão, presente desde a fundação da APAE, permanece como uma das principais marcas de sua atuação pública.",
     icon: Accessibility,
     img: universityImg,
   },
@@ -561,7 +679,8 @@ function Trajetoria() {
           <div className="mx-auto max-w-3xl text-center">
             <SectionEyebrow>Uma vida dedicada às pessoas</SectionEyebrow>
             <h2 className="mt-5 font-display text-4xl font-black leading-tight text-navy sm:text-5xl">
-              Uma história feita de <span className="text-gradient-gold">pessoas</span>.
+              Experiência para fazer.{" "}
+              <span className="text-gradient-gold">Sensibilidade para cuidar.</span>
             </h2>
             <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
               Cada etapa da trajetória de Carla Machado é marcada por escolhas
@@ -1557,7 +1676,6 @@ function LandingPage() {
         <AtuacaoParlamentar />
         <AtuacaoAlerj />
         <ProjetosSociais />
-        <ProjetosDeLei />
         <ProjetosLeiDestaque />
         <PrestacaoContasMandato />
         <InvestimentosPorArea />
@@ -1565,11 +1683,9 @@ function LandingPage() {
         <PrincipaisEntregas />
         <TimelineMandato />
         <ImpactoEstado />
-        <Numeros />
         <Contas />
         
         <Causas />
-        <Galeria />
         <GaleriaCategorias
           imagens={[
             { src: eventImg, alt: "Discurso na tribuna da ALERJ", cat: "Alerj" },
