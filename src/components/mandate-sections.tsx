@@ -503,6 +503,8 @@ function CountCard({
     minimumFractionDigits: decimals,
     maximumFractionDigits: decimals,
   });
+  const fullText = `${prefix}${formatted}${suffix}`;
+  const isLong = fullText.length > 9;
   return (
     <div
       ref={ref}
@@ -511,10 +513,12 @@ function CountCard({
       <div className="grid h-12 w-12 place-items-center rounded-xl gradient-gold text-navy-deep shadow-gold">
         <Icon className="h-6 w-6" />
       </div>
-      <div className="mt-5 font-display text-3xl font-black text-white sm:text-4xl">
-        {prefix}
-        {formatted}
-        {suffix}
+      <div
+        className={`mt-5 whitespace-nowrap font-display font-black tabular-nums text-white ${
+          isLong ? "text-2xl sm:text-3xl" : "text-3xl sm:text-4xl"
+        }`}
+      >
+        {fullText}
       </div>
       <div className="mt-2 text-sm font-medium text-white/70">{label}</div>
     </div>
@@ -587,7 +591,10 @@ export function InvestimentosPorArea() {
             Investimentos por <span className="text-gradient-gold">Área</span>
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
-            R$ {total.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}{" "}
+            <span className="whitespace-nowrap tabular-nums">
+              R${" "}
+              {total.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+            </span>{" "}
             distribuídos com critério e sensibilidade social.
           </p>
         </Reveal>
@@ -611,8 +618,9 @@ export function InvestimentosPorArea() {
                         {i.area}
                       </div>
                     </div>
-                    <div className="font-display text-lg font-bold text-navy">
-                      R$ {i.valor.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
+                    <div className="whitespace-nowrap font-display text-lg font-bold text-navy tabular-nums">
+                      R${" "}
+                      {i.valor.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
                     </div>
                   </div>
                   <div className="mt-2 h-3 overflow-hidden rounded-full bg-secondary">
@@ -846,6 +854,16 @@ export function MapaAtuacao() {
                 </div>
               )}
             </div>
+            <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2 px-2 text-xs font-medium text-white/70">
+              <span className="inline-flex items-center gap-2">
+                <i className="inline-block h-3 w-3 rounded-full border-2 border-white bg-gold" />
+                Município selecionado
+              </span>
+              <span className="inline-flex items-center gap-2">
+                <i className="inline-block h-2.5 w-2.5 rounded-full border-2 border-white bg-green" />
+                Município atendido
+              </span>
+            </div>
           </div>
 
           <AnimatePresence mode="wait">
@@ -878,8 +896,9 @@ export function MapaAtuacao() {
                     <div className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">
                       Destinado
                     </div>
-                    <div className="mt-1 font-display text-2xl font-black text-navy">
-                      R$ {(sel.valor / 1000).toFixed(0)}k
+                    <div className="mt-1 whitespace-nowrap font-display text-xl font-black text-navy tabular-nums">
+                      R${" "}
+                      {sel.valor.toLocaleString("pt-BR")}
                     </div>
                   </div>
                 </div>
@@ -1470,7 +1489,7 @@ export function ProjetosLeiDestaque() {
       ? PL_DESTAQUES
       : PL_DESTAQUES.filter((p) => p.categoria === filtro);
   return (
-    <section id="pl-destaque" className="relative bg-secondary py-24 sm:py-32">
+    <section id="pl-destaque" className="relative bg-secondary pt-24 pb-8 sm:pt-32 sm:pb-10">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <Reveal className="mx-auto max-w-3xl text-center">
           <Eyebrow>Legislativo · Destaques</Eyebrow>
@@ -1721,6 +1740,520 @@ export function Legado({ image }: { image: string }) {
               </a>
             </div>
           </Reveal>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ============ 14. INDICAÇÕES DO MANDATO ============ */
+
+type Indicacao = {
+  numero: string;
+  tipo: "Simples" | "Legislativa";
+  categoria: string;
+  titulo: string;
+  resumo: string;
+  data: string;
+  autoridade: string;
+  local: string;
+};
+
+const INDICACOES: Indicacao[] = [
+  {
+    numero: "3876/2024",
+    tipo: "Simples",
+    categoria: "Segurança Pública",
+    titulo: "Reativação do DPO em Sabonete",
+    resumo:
+      "Solicita ao Governo do Estado a reativação do Destacamento de Policiamento Ostensivo na localidade de Sabonete, no 5º distrito de São João da Barra.",
+    data: "27/08/2024",
+    autoridade: "Poder Executivo",
+    local: "São João da Barra",
+  },
+  {
+    numero: "4428/2025",
+    tipo: "Simples",
+    categoria: "Segurança Pública",
+    titulo: "Delegacia da Mulher (DEAM) em São João da Barra",
+    resumo:
+      "Solicita ao Governador o envio de mensagem dispondo sobre a criação de uma Delegacia Especializada de Atendimento à Mulher no município.",
+    data: "05/02/2025",
+    autoridade: "Poder Executivo, Secretaria de Polícia Civil",
+    local: "São João da Barra",
+  },
+  {
+    numero: "4429/2025",
+    tipo: "Simples",
+    categoria: "Trânsito",
+    titulo: "Emissão de CNH no posto do Detran de São João da Barra",
+    resumo:
+      "Solicita ao Detran/RJ que o posto de identificação civil do município passe a executar os serviços de obtenção e emissão da Carteira Nacional de Habilitação.",
+    data: "05/02/2025",
+    autoridade: "DETRAN-RJ",
+    local: "São João da Barra",
+  },
+  {
+    numero: "5419/2025",
+    tipo: "Simples",
+    categoria: "Rodovias",
+    titulo: "Recapeamento da RJ-194 e RJ-196",
+    resumo:
+      "Solicita ao DER-RJ providências para viabilizar o recapeamento das rodovias que dão acesso à Ponte da Integração, no Norte Fluminense.",
+    data: "10/06/2025",
+    autoridade: "Poder Executivo, DER-RJ",
+    local: "São João da Barra",
+  },
+  {
+    numero: "5668/2025",
+    tipo: "Simples",
+    categoria: "Segurança Pública",
+    titulo: "Programa Segurança Presente em São João da Barra",
+    resumo:
+      "Solicita ao Governador a implantação do Programa Segurança Presente no município.",
+    data: "07/08/2025",
+    autoridade: "Poder Executivo",
+    local: "São João da Barra",
+  },
+  {
+    numero: "5686/2025",
+    tipo: "Simples",
+    categoria: "Agricultura e Pecuária",
+    titulo: "ExpoBarra no calendário oficial de exposições agropecuárias",
+    resumo:
+      "Solicita à SEAPPA a inclusão da ExpoBarra no calendário oficial de exposições agropecuárias do Estado do Rio de Janeiro.",
+    data: "12/08/2025",
+    autoridade: "Secretaria de Agricultura e Pecuária",
+    local: "São João da Barra",
+  },
+  {
+    numero: "5928/2025",
+    tipo: "Simples",
+    categoria: "Segurança Pública",
+    titulo: "Novas unidades do CAAC no Norte e Noroeste Fluminense",
+    resumo:
+      "Solicita ao Governador a criação de novas unidades do Centro de Atendimento ao Adolescente e à Criança Vítima de Violência nas regiões Norte e Noroeste.",
+    data: "07/10/2025",
+    autoridade: "Poder Executivo",
+    local: "Norte e Noroeste Fluminense",
+  },
+  {
+    numero: "5926/2025",
+    tipo: "Simples",
+    categoria: "Segurança Pública",
+    titulo: "Programa Segurança Presente em São João da Barra",
+    resumo:
+      "Reitera ao Governador a implantação do Programa Segurança Presente no município de São João da Barra.",
+    data: "07/10/2025",
+    autoridade: "Poder Executivo",
+    local: "São João da Barra",
+  },
+  {
+    numero: "6200/2025",
+    tipo: "Simples",
+    categoria: "Rodovias",
+    titulo: "Revitalização da RJ-196 entre Mineiros e Barra do Furado",
+    resumo:
+      "Solicita ao DER-RJ a revitalização do trecho da RJ-196 entre Mineiros (Campos dos Goytacazes) e Barra do Furado (Quissamã).",
+    data: "16/12/2025",
+    autoridade: "Poder Executivo, DER-RJ",
+    local: "Norte Fluminense",
+  },
+  {
+    numero: "6575/2026",
+    tipo: "Simples",
+    categoria: "Transporte",
+    titulo: "Linha rodoviária entre Macaé e São João da Barra",
+    resumo:
+      "Solicita ao DETRO a implantação de linha rodoviária ligando os municípios de Macaé e São João da Barra.",
+    data: "19/03/2026",
+    autoridade: "DETRO",
+    local: "Norte Fluminense",
+  },
+  {
+    numero: "6576/2026",
+    tipo: "Simples",
+    categoria: "Rodovias",
+    titulo: "Estradas vicinais de Campos no Programa Estradas Agro RJ",
+    resumo:
+      "Solicita à SEAPPA a inclusão das estradas vicinais de diversos bairros de Campos dos Goytacazes no Programa Estradas Agro RJ.",
+    data: "19/03/2026",
+    autoridade: "Secretaria de Agricultura e Pecuária",
+    local: "Campos dos Goytacazes",
+  },
+  {
+    numero: "6679/2026",
+    tipo: "Simples",
+    categoria: "Royalties do Petróleo",
+    titulo: "Defesa da distribuição dos royalties do petróleo",
+    resumo:
+      "Solicita ao Governador a adoção de medidas institucionais, em articulação com a Alerj, no julgamento das ADIs sobre a distribuição dos royalties do petróleo e participações especiais.",
+    data: "08/04/2026",
+    autoridade: "Poder Executivo",
+    local: "Estado",
+  },
+  {
+    numero: "6584/2026",
+    tipo: "Simples",
+    categoria: "Autismo",
+    titulo: "Centro de diagnóstico e tratamento do TEA em Campos",
+    resumo:
+      "Solicita ao Governador a instalação de um centro de diagnóstico e tratamento do Transtorno do Espectro Autista em Campos dos Goytacazes, para atender o Norte e Noroeste Fluminense.",
+    data: "24/03/2026",
+    autoridade: "Poder Executivo",
+    local: "Norte Fluminense",
+  },
+  {
+    numero: "6886/2026",
+    tipo: "Simples",
+    categoria: "Educação",
+    titulo: "Gratificação para docentes do Colégio Chrisanto Henrique de Souza",
+    resumo:
+      "Solicita à Secretaria de Educação a inclusão da escola na relação de difícil provimento, para concessão de gratificação aos docentes.",
+    data: "02/06/2026",
+    autoridade: "Secretaria de Educação",
+    local: "São João da Barra",
+  },
+  {
+    numero: "6887/2026",
+    tipo: "Simples",
+    categoria: "Transporte",
+    titulo: "Mais vagas no Detran de Campos dos Goytacazes",
+    resumo:
+      "Solicita ao Detran/RJ providências para sanar a insuficiência de vagas de agendamento e realizar uma edição do Detran Presente no município.",
+    data: "02/06/2026",
+    autoridade: "Poder Executivo, DETRAN-RJ",
+    local: "Campos dos Goytacazes",
+  },
+  {
+    numero: "6913/2026",
+    tipo: "Simples",
+    categoria: "Energia elétrica",
+    titulo: "Estabilidade no fornecimento de energia em São João da Barra",
+    resumo:
+      "Solicita à Enel Brasil providências para garantir maior estabilidade no fornecimento de energia elétrica e esclarecimentos sobre as interrupções recorrentes.",
+    data: "09/06/2026",
+    autoridade: "ENEL",
+    local: "São João da Barra",
+  },
+  {
+    numero: "6914/2026",
+    tipo: "Simples",
+    categoria: "Transporte",
+    titulo: "Descentralização das perícias médicas do Detran para PcDs",
+    resumo:
+      "Solicita ao Detran/RJ a descentralização e ampliação dos atendimentos médico-periciais destinados às pessoas com deficiência.",
+    data: "09/06/2026",
+    autoridade: "Poder Executivo, DETRAN-RJ",
+    local: "Estado",
+  },
+  {
+    numero: "6945/2026",
+    tipo: "Simples",
+    categoria: "Pessoa com Deficiência",
+    titulo: "Mobilidade e acessibilidade para PcDs, autistas e idosos",
+    resumo:
+      "Solicita ao Governador políticas de descentralização, modernização e ampliação dos serviços de mobilidade e acessibilidade para PcDs, pessoas com TEA, idosos e beneficiários de gratuidades legais.",
+    data: "10/06/2026",
+    autoridade: "Poder Executivo",
+    local: "Estado",
+  },
+  {
+    numero: "6946/2026",
+    tipo: "Simples",
+    categoria: "Autismo",
+    titulo: "Regulamentação de políticas públicas para pessoas com TEA",
+    resumo:
+      "Solicita ao Governador a regulamentação, integração e efetiva implementação de políticas públicas para pessoas com Transtorno do Espectro Autista.",
+    data: "10/06/2026",
+    autoridade: "Poder Executivo",
+    local: "Estado",
+  },
+  {
+    numero: "6962/2026",
+    tipo: "Simples",
+    categoria: "Defesa Civil",
+    titulo: "Medidas preventivas contra impactos do El Niño",
+    resumo:
+      "Solicita à Defesa Civil, ao Cepedec e ao Cemaden a adoção de medidas preventivas para enfrentar os possíveis impactos do fenômeno El Niño no Estado.",
+    data: "17/06/2026",
+    autoridade: "Poder Executivo, Secretaria de Defesa Civil",
+    local: "Estado",
+  },
+  {
+    numero: "6982/2026",
+    tipo: "Simples",
+    categoria: "Pessoa com Deficiência",
+    titulo: "Acessibilidade no embarque do transporte estadual",
+    resumo:
+      "Solicita à Setram, ao Detro e à Mais Mobi a adoção de medidas de acessibilidade para o embarque de passageiros nos modais de transporte de competência estadual.",
+    data: "30/06/2026",
+    autoridade: "Secretaria de Transporte e Mobilidade, DETRO-RJ",
+    local: "Estado",
+  },
+  {
+    numero: "6983/2026",
+    tipo: "Simples",
+    categoria: "Pessoa com Deficiência",
+    titulo: "Acessibilidade no embarque do transporte municipal do Rio",
+    resumo:
+      "Solicita à Secretaria Municipal de Transportes e à CDB Bilhete Digital medidas de acessibilidade para o embarque de passageiros nos modais de transporte municipal.",
+    data: "30/06/2026",
+    autoridade: "Secretaria de Transporte da cidade do Rio de Janeiro",
+    local: "Rio de Janeiro",
+  },
+  {
+    numero: "06/23",
+    tipo: "Legislativa",
+    categoria: "Educação",
+    titulo: "Planos de carreira dos servidores da UENF e UERJ",
+    resumo:
+      "Solicita ao Governador o envio de mensagem dispondo sobre os planos de carreira dos servidores da UENF e da UERJ.",
+    data: "27/02/2023",
+    autoridade: "Poder Executivo",
+    local: "UENF, UERJ",
+  },
+  {
+    numero: "89/2023",
+    tipo: "Legislativa",
+    categoria: "Rodovias",
+    titulo: "Conclusão da Ponte da Integração",
+    resumo:
+      "Solicita ao Governador providências para a conclusão da Ponte da Integração e seus acessos, ligando São João da Barra e São Francisco de Itabapoana.",
+    data: "15/06/2023",
+    autoridade: "Poder Executivo",
+    local: "São João da Barra, São Francisco do Itabapoana",
+  },
+  {
+    numero: "109/2023",
+    tipo: "Legislativa",
+    categoria: "Cultura",
+    titulo: "Fomento à Fundação Teatro Municipal",
+    resumo:
+      "Solicita ao Governador o envio de mensagem dispondo sobre medidas para fomentar as atividades da Fundação Teatro Municipal.",
+    data: "02/08/2023",
+    autoridade: "Poder Executivo",
+    local: "Teatro Municipal",
+  },
+  {
+    numero: "139/2023",
+    tipo: "Legislativa",
+    categoria: "Segurança Pública",
+    titulo: "Reativação do DPO de Sabonete",
+    resumo:
+      "Solicita ao Governador providências para reativação do Destacamento de Policiamento Ostensivo na localidade de Sabonete, 5º distrito de São João da Barra.",
+    data: "29/08/2023",
+    autoridade: "Poder Executivo",
+    local: "São João da Barra",
+  },
+  {
+    numero: "140/2023",
+    tipo: "Legislativa",
+    categoria: "Rodovias",
+    titulo: "Recuperação da RJ-240, acesso à Praia do Açu",
+    resumo:
+      "Solicita ao Governador obras de recuperação na RJ-240, estrada que liga a localidade de Azeitona à Praia do Açu.",
+    data: "29/08/2023",
+    autoridade: "Poder Executivo",
+    local: "São João da Barra",
+  },
+  {
+    numero: "143/2023",
+    tipo: "Legislativa",
+    categoria: "Meio Ambiente",
+    titulo: "Construção dos reservatórios de Atafona",
+    resumo:
+      "Solicita ao Governador o envio de mensagem solicitando a realização urgente do pregão para construção dos reservatórios em Atafona.",
+    data: "30/08/2023",
+    autoridade: "Poder Executivo",
+    local: "São João da Barra",
+  },
+  {
+    numero: "252/2024",
+    tipo: "Legislativa",
+    categoria: "Segurança Pública",
+    titulo: "Posto avançado da Polícia Rodoviária na Ponte da Integração",
+    resumo:
+      "Solicita ao Governador a construção de um posto avançado do Batalhão de Polícia Rodoviária na região da Ponte de Integração Dodozinho Mendonça.",
+    data: "20/02/2024",
+    autoridade: "Poder Executivo",
+    local: "São João da Barra",
+  },
+  {
+    numero: "253/2024",
+    tipo: "Legislativa",
+    categoria: "Segurança Pública",
+    titulo: "Reativação do DPO de Santa Maria em Campos",
+    resumo:
+      "Solicita ao Governador a reativação do DPO da localidade de Santa Maria, 18º distrito de Campos dos Goytacazes.",
+    data: "20/02/2024",
+    autoridade: "Poder Executivo",
+    local: "Campos",
+  },
+  {
+    numero: "293/2024",
+    tipo: "Legislativa",
+    categoria: "Rodovias",
+    titulo: "Desobstrução da RJ-204 entre Deserto Feliz e a BR-101",
+    resumo:
+      "Solicita ao Governador providências para desobstrução e limpeza da RJ-204, entre Deserto Feliz e a BR-101, km-19, em Campos dos Goytacazes.",
+    data: "22/05/2024",
+    autoridade: "Poder Executivo",
+    local: "Campos",
+  },
+  {
+    numero: "354/2024",
+    tipo: "Legislativa",
+    categoria: "Autismo",
+    titulo: "Centros de tratamento especializado para autistas adultos",
+    resumo:
+      "Solicita ao Governador o envio de mensagem sobre a criação de centros de tratamento especializado para autistas adolescentes e adultos no Estado.",
+    data: "06/08/2024",
+    autoridade: "Poder Executivo",
+    local: "Estado",
+  },
+  {
+    numero: "401/2024",
+    tipo: "Legislativa",
+    categoria: "Proteção Animal",
+    titulo: "Afastamento de servidores para tratamento de animal doméstico",
+    resumo:
+      "Solicita ao Governador o envio de mensagem sobre o afastamento de servidores civis e militares por motivo de acompanhamento de animal doméstico em tratamento veterinário.",
+    data: "29/10/2024",
+    autoridade: "Poder Executivo",
+    local: "Estado",
+  },
+  {
+    numero: "427/2025",
+    tipo: "Legislativa",
+    categoria: "Pessoa com Deficiência",
+    titulo: "Vara específica para pessoas com deficiência",
+    resumo:
+      "Solicita ao Presidente do TJRJ o envio de mensagem dispondo sobre a criação de uma vara específica para atender pessoas com deficiência.",
+    data: "05/02/2025",
+    autoridade: "Poder Judiciário",
+    local: "Estado",
+  },
+  {
+    numero: "556/2025",
+    tipo: "Legislativa",
+    categoria: "Pessoa com Deficiência",
+    titulo: "Descentralização das perícias médicas do Detran",
+    resumo:
+      "Solicita ao Governador o envio de mensagem sobre a descentralização dos atendimentos médico-periciais realizados pelo Detran/RJ.",
+    data: "12/08/2025",
+    autoridade: "Poder Executivo",
+    local: "Estado",
+  },
+  {
+    numero: "624/2026",
+    tipo: "Legislativa",
+    categoria: "Meio Ambiente",
+    titulo: "Plano Estadual de Gerenciamento Costeiro",
+    resumo:
+      "Solicita ao Governador o envio de mensagem sobre a instituição do Plano Estadual de Gerenciamento Costeiro (PEGC).",
+    data: "24/02/2026",
+    autoridade: "Poder Executivo",
+    local: "Estado",
+  },
+  {
+    numero: "638/2026",
+    tipo: "Legislativa",
+    categoria: "Enfermagem",
+    titulo: "Piso salarial da enfermagem no Rio de Janeiro",
+    resumo:
+      "Solicita ao Governador o envio de mensagem sobre a instituição do piso salarial para os profissionais de enfermagem que atuam no Estado.",
+    data: "10/03/2026",
+    autoridade: "Poder Executivo",
+    local: "Estado",
+  },
+];
+
+const INDICACOES_FILTROS: (Indicacao["categoria"] | "Todos")[] = [
+  "Todos",
+  ...Array.from(new Set(INDICACOES.map((i) => i.categoria))),
+];
+
+export function IndicacoesMandato() {
+  const [filtro, setFiltro] =
+    useState<(typeof INDICACOES_FILTROS)[number]>("Todos");
+  const lista =
+    filtro === "Todos"
+      ? INDICACOES
+      : INDICACOES.filter((i) => i.categoria === filtro);
+  return (
+    <section id="indicacoes" className="relative bg-secondary pt-8 pb-24 sm:pt-10 sm:pb-32">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <Reveal className="mx-auto max-w-3xl text-center">
+          <Eyebrow>Legislativo · Indicações</Eyebrow>
+          <h2 className="mt-5 font-display text-4xl font-black text-navy sm:text-5xl">
+            Indicações do <span className="text-gradient-gold">Mandato</span>
+          </h2>
+          <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
+            Solicitações formais ao Poder Executivo e a outras autoridades,
+            filtre por área e conheça as demandas levadas pelo mandato.
+          </p>
+        </Reveal>
+
+        <div className="mt-10 flex flex-wrap justify-center gap-2">
+          {INDICACOES_FILTROS.map((f) => {
+            const active = filtro === f;
+            return (
+              <button
+                key={f}
+                onClick={() => setFiltro(f)}
+                className={`rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] transition ${
+                  active
+                    ? "border-transparent bg-navy text-white shadow-elegant"
+                    : "border-navy/20 bg-white text-navy hover:border-gold/60 hover:text-navy"
+                }`}
+              >
+                {f}
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <AnimatePresence mode="popLayout">
+            {lista.map((ind, i) => (
+              <motion.div
+                key={ind.numero}
+                layout
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.35, delay: i * 0.03 }}
+                className="group relative overflow-hidden rounded-3xl border border-border bg-card p-6 shadow-soft transition-all hover:-translate-y-1 hover:shadow-elegant"
+              >
+                <div className="flex items-center justify-between gap-2">
+                  <span className="inline-block rounded-full border border-gold/30 bg-gold/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-navy">
+                    {ind.categoria}
+                  </span>
+                  <span className="inline-flex shrink-0 items-center gap-1 text-xs font-semibold text-muted-foreground">
+                    <FileText className="h-3.5 w-3.5 text-gold" />
+                    {ind.numero}
+                  </span>
+                </div>
+                <h3 className="mt-4 font-display text-lg font-bold leading-snug text-navy">
+                  {ind.titulo}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  {ind.resumo}
+                </p>
+                <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1.5 border-t border-border pt-3 text-xs text-muted-foreground">
+                  <span className="inline-flex items-center gap-1.5">
+                    <Calendar className="h-3.5 w-3.5 text-navy/50" />
+                    {ind.data}
+                  </span>
+                  <span className="inline-flex items-center gap-1.5">
+                    <MapPin className="h-3.5 w-3.5 text-navy/50" />
+                    {ind.local}
+                  </span>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </div>
       </div>
     </section>
