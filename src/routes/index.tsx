@@ -64,6 +64,7 @@ import {
   AtuacaoAlerj,
   ProjetosSociais,
   ProjetosLeiDestaque,
+  IndicacoesMandato,
   GaleriaCategorias,
   Legado,
 } from "@/components/mandate-sections";
@@ -178,6 +179,7 @@ function Nav() {
     ["Trajetória", "#trajetoria"],
     ["Mandato", "#atuacao"],
     ["Projetos", "#projetos"],
+    ["Indicações", "#indicacoes"],
     ["Prestação", "#prestacao"],
     ["Entregas", "#entregas"],
     ["Mapa", "#mapa-atuacao"],
@@ -1677,6 +1679,7 @@ function LandingPage() {
         <AtuacaoAlerj />
         <ProjetosSociais />
         <ProjetosLeiDestaque />
+        <IndicacoesMandato />
         <PrestacaoContasMandato />
         <InvestimentosPorArea />
         <MapaAtuacao />

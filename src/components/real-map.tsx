@@ -1,7 +1,8 @@
-import { MapContainer, TileLayer, Marker, Tooltip } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Tooltip, GeoJSON } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import type { Cidade } from "./mandate-sections";
+import { MUNICIPIO_BOUNDARIES } from "./map-data";
 
 function pinIcon(active: boolean) {
   const color = active ? "#D4AF37" : "#2F9E44";
@@ -40,9 +41,28 @@ export default function RealMap({
       style={{ background: "#e5e7eb" }}
     >
       <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+        url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
       />
+      {cidades.map((c) => {
+        const boundary = MUNICIPIO_BOUNDARIES[c.id];
+        const active = sel?.id === c.id;
+        if (!boundary) return null;
+        return (
+          <GeoJSON
+            key={`${c.id}-${active}`}
+            data={boundary}
+            eventHandlers={{ click: () => onSelect(c) }}
+            style={{
+              color: active ? "#D4AF37" : "#2F9E44",
+              weight: active ? 3 : 2,
+              fillColor: active ? "#D4AF37" : "#2F9E44",
+              fillOpacity: active ? 0.25 : 0.1,
+              opacity: 0.9,
+            }}
+          />
+        );
+      })}
       {cidades.map((c) => (
         <Marker
           key={c.id}
