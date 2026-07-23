@@ -48,6 +48,13 @@ import eventAsset from "@/assets/carla-event.jpg.asset.json";
 import hospitalImg from "@/assets/achievement-hospital.jpg";
 import universityImg from "@/assets/achievement-university.jpg";
 import agriImg from "@/assets/achievement-agri.jpg";
+import inicioServicoPublicoImg from "@/assets/inicioservicopublico.jpg";
+import fundacaoApaeImg from "@/assets/fundacaoapae.jpg";
+import primeiraMulherImg from "@/assets/primeiramulher.jpg";
+import deputadaEstadualImg from "@/assets/deputadaestadualaelrj.jpg";
+import frenteParlamentarImg from "@/assets/frenteparlamentarpessoas.jpg";
+import quatroMandatosImg from "@/assets/quatromandatos.png";
+import primeiraMulherPresidenteImg from "@/assets/primeiramulherpresidente.jpg";
 const heroImg = fotoHeroImg;
 const ctaImg = ctaAsset.url;
 const peopleImg = peopleAsset.url;
@@ -612,60 +619,60 @@ function Hero() {
 
 const timeline = [
   {
-    year: "1982",
+    year: "1983",
     title: "O início do serviço público",
     text:
-      "A trajetória de Carla Machado no serviço público começou na área da Educação, onde atuou inicialmente como assessora e, posteriormente, como Secretária Municipal de Educação de São João da Barra. Professora de formação, sempre acreditou que a educação é o principal instrumento de transformação social. Desde os primeiros anos de sua vida pública, destacou-se pelo compromisso com a melhoria da qualidade do ensino, pela valorização dos profissionais da educação e pela construção de políticas públicas voltadas ao desenvolvimento humano e ao fortalecimento das comunidades.",
+      "Professora de formação, Carla Machado iniciou sua trajetória no serviço público, em 1983, na área da Educação, atuando como assessora e, posteriormente, como Secretária Municipal de Educação de São João da Barra. Sempre defendeu a educação como instrumento de transformação social, pautando sua atuação pela valorização do ensino e pelo desenvolvimento das pessoas.",
     icon: Sparkles,
-    img: agriImg,
+    img: inicioServicoPublicoImg,
   },
   {
     year: "1992",
     title: "Fundação da APAE",
     text:
-      "Em 1992, Carla Machado participou da fundação da APAE de São João da Barra e tornou-se sua primeira presidente, iniciando uma das mais importantes frentes de atuação de sua vida pública. O trabalho desenvolvido junto às pessoas com deficiência e suas famílias consolidou uma trajetória marcada pelo acolhimento, pela inclusão e pela defesa dos direitos das pessoas com deficiência. Essa experiência tornou-se a base de sua atuação política e continua presente em suas iniciativas, projetos e ações voltadas à construção de uma sociedade mais acessível e inclusiva.",
+      "Em 1992, Carla Machado fundou a APAE de São João da Barra e tornou-se a primeira presidente. A atuação junto às pessoas com deficiência e suas famílias marca sua trajetória pública, pautada pelo acolhimento, pela inclusão e pela defesa dos direitos, princípios que seguem presentes em sua atuação política por décadas.",
     icon: HandHeart,
-    img: hospitalImg,
+    img: fundacaoApaeImg,
   },
   {
-    year: "1997",
+    year: "1996",
     title: "Primeira mulher Presidente da Câmara",
     text:
-      "Eleita vereadora em 1996, Carla Machado fez história ao se tornar a primeira mulher a presidir a Câmara Municipal de São João da Barra. Sua gestão foi marcada pelo fortalecimento do Poder Legislativo, pelo diálogo entre os parlamentares e pela aproximação da Câmara com a população. O pioneirismo nesse cargo representou um importante avanço para a participação feminina na política regional, abrindo caminho para que outras mulheres ocupassem espaços de liderança e decisão.",
+      "Eleita vereadora em 1996, Carla Machado tornou-se a primeira mulher a presidir a Câmara Municipal de São João da Barra. Sua gestão foi marcada pelo fortalecimento do Legislativo e pelo diálogo com a população, consolidando um importante avanço para a participação feminina nos espaços de liderança política.",
     icon: Users,
-    img: universityImg,
+    img: primeiraMulherPresidenteImg,
   },
   {
-    year: "2001",
+    year: "2004",
     title: "Primeira mulher Prefeita de São João da Barra",
     text:
-      "Em 2004, Carla Machado foi eleita a primeira mulher prefeita da história de São João da Barra, iniciando um novo ciclo de desenvolvimento para o município. Sua gestão priorizou investimentos em infraestrutura urbana, educação, saúde, assistência social, cultura, turismo e valorização dos serviços públicos. Com planejamento e capacidade administrativa, implementou projetos que contribuíram para melhorar a qualidade de vida da população e preparar o município para um período de crescimento econômico.",
+      "Em 2004, Carla Machado tornou-se a primeira mulher eleita prefeita de São João da Barra. Sua gestão foi marcada por investimentos em áreas estratégicas, como infraestrutura, educação, saúde e assistência social, contribuindo para o desenvolvimento do município e para a melhoria da qualidade de vida da população.",
     icon: Landmark,
-    img: peopleImg,
+    img: primeiraMulherImg,
   },
   {
     year: "2001 – 2020",
     title: "Quatro mandatos como Prefeita",
     text:
-      "Ao longo de quatro mandatos, Carla Machado conduziu uma das administrações mais longevas da história de São João da Barra. Durante esse período, liderou importantes obras de infraestrutura, ampliou os investimentos na saúde e na educação, fortaleceu programas sociais e incentivou a cultura, o esporte e o turismo. Também acompanhou e participou das transformações provocadas pela instalação do Complexo Portuário do Açu, trabalhando para que o desenvolvimento econômico gerasse oportunidades, emprego e melhorias para a população local.",
+      "Ao longo de quatro mandatos, Carla Machado liderou importantes transformações em São João da Barra, com investimentos em infraestrutura, saúde, educação e programas sociais. Também acompanhou o processo de desenvolvimento impulsionado pelo Complexo Portuário do Açu, atuando para ampliar oportunidades e promover melhorias para a população.",
     icon: Trophy,
-    img: agriImg,
+    img: quatroMandatosImg,
   },
   {
     year: "2023",
     title: "Deputada Estadual pela Alerj",
     text:
-      "Eleita deputada estadual em 2022, Carla Machado passou a representar o Norte e o Noroeste Fluminense na Assembleia Legislativa do Estado do Rio de Janeiro. No Parlamento, atua na defesa dos municípios do interior, buscando investimentos, apresentando projetos de lei e destinando recursos para áreas essenciais como saúde, educação, assistência social, infraestrutura e desenvolvimento regional. Também integra importantes comissões permanentes da Alerj, fortalecendo sua atuação legislativa e fiscalizadora.",
+      "Eleita deputada estadual em 2022, Carla Machado passou a representar o Norte e o Noroeste Fluminense na Assembleia Legislativa do Rio de Janeiro. Sua atuação é voltada à defesa dos municípios do interior, com foco na destinação de recursos, no desenvolvimento regional e no fortalecimento de políticas públicas essenciais.",
     icon: Building2,
-    img: hospitalImg,
+    img: deputadaEstadualImg,
   },
   {
     year: "2024",
     title: "Frente Parlamentar em Defesa das Pessoas com TEA",
     text:
-      "Na Assembleia Legislativa, Carla Machado criou e coordena a Frente Parlamentar em Defesa das Pessoas com Transtorno do Espectro Autista (TEA), reunindo especialistas, entidades, famílias e representantes da sociedade civil para discutir e propor políticas públicas voltadas à inclusão. Além da atuação legislativa, desenvolve iniciativas como a Banquinha da Inclusão, promove audiências públicas e apresenta projetos que ampliam direitos, garantem acessibilidade e fortalecem o acolhimento das famílias atípicas. A pauta da inclusão, presente desde a fundação da APAE, permanece como uma das principais marcas de sua atuação pública.",
+      "Na Alerj, Carla Machado criou e coordena a Frente Parlamentar em Defesa das Pessoas com Transtorno do Espectro Autista (TEA). A iniciativa reúne famílias, especialistas e entidades para fortalecer políticas de inclusão, ampliar direitos e promover mais acolhimento e acessibilidade às pessoas atípicas.",
     icon: Accessibility,
-    img: universityImg,
+    img: frenteParlamentarImg,
   },
 ];
 
