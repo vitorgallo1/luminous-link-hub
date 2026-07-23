@@ -55,6 +55,7 @@ import deputadaEstadualImg from "@/assets/deputadaestadualaelrj.jpg";
 import frenteParlamentarImg from "@/assets/frenteparlamentarpessoas.jpg";
 import quatroMandatosImg from "@/assets/quatromandatos.png";
 import primeiraMulherPresidenteImg from "@/assets/primeiramulherpresidente.jpg";
+import logoImg from "@/assets/logo.png";
 const heroImg = fotoHeroImg;
 const ctaImg = ctaAsset.url;
 const peopleImg = peopleAsset.url;
@@ -206,20 +207,8 @@ function Nav() {
               : "bg-transparent"
           }`}
         >
-          <a href="#top" className="flex min-w-0 items-center gap-3">
-            <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl gradient-gold shadow-gold">
-              <span className="font-display text-lg font-black text-navy-deep">
-                CM
-              </span>
-            </div>
-            <div className="min-w-0">
-              <div className="truncate font-display text-sm font-extrabold leading-tight text-white sm:text-base">
-                Carla Machado
-              </div>
-              <div className="truncate text-[10px] font-medium uppercase tracking-[0.22em] text-gold-soft/90 sm:text-xs">
-                Deputada Estadual · RJ
-              </div>
-            </div>
+          <a href="#top" className="ml-1 flex min-w-0 items-center sm:ml-2">
+            <img src={logoImg} alt="Carla Machado, Deputada Estadual" className="h-14 w-auto shrink-0 object-contain sm:h-16" />
           </a>
           <div className="flex items-center gap-2 sm:gap-4">
             <nav className="hidden items-center gap-6 xl:flex">
@@ -1578,17 +1567,7 @@ function Footer() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr]">
           <div>
-            <div className="flex items-center gap-3">
-              <div className="grid h-12 w-12 place-items-center rounded-xl gradient-gold">
-                <span className="font-display text-lg font-black text-navy-deep">CM</span>
-              </div>
-              <div>
-                <div className="font-display text-lg font-extrabold">Carla Machado</div>
-                <div className="text-xs uppercase tracking-widest text-gold">
-                  Deputada Estadual · RJ
-                </div>
-              </div>
-            </div>
+            <img src={logoImg} alt="Carla Machado, Deputada Estadual" className="h-16 w-auto object-contain" />
             <p className="mt-6 max-w-md text-sm leading-relaxed text-white/70">
               Experiência para fazer. Sensibilidade para cuidar. Uma trajetória de 43
               anos a serviço do interior do Rio de Janeiro.
