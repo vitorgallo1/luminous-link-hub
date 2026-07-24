@@ -84,7 +84,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:image",
         content:
-          "https://id-preview--bc5ebaa8-4248-443b-9533-a560b32e8e57.lovable.app/og-image.jpg",
+          "https://storage.googleapis.com/gpt-engineer-file-uploads/DBXPqjnAqZY3oKEBVGnCbVwPOSK2/social-images/social-1784933340407-IMG_0552.webp",
       },
     ],
   }),
@@ -1677,13 +1677,18 @@ function LandingPage() {
         <Causas />
         <GaleriaCategorias
           imagens={[
-            { src: inicioServicoPublicoImg, alt: "Início do serviço público na Educação (1983)", cat: "Educação" },
-            { src: fundacaoApaeImg, alt: "Fundação da APAE de São João da Barra (1992)", cat: "Inclusão" },
-            { src: primeiraMulherPresidenteImg, alt: "Primeira mulher Presidente da Câmara (1996)", cat: "Municípios" },
-            { src: primeiraMulherImg, alt: "Primeira mulher Prefeita de São João da Barra (2004)", cat: "Municípios" },
-            { src: quatroMandatosImg, alt: "Quatro mandatos como Prefeita", cat: "Eventos" },
-            { src: deputadaEstadualImg, alt: "Deputada Estadual pela Alerj (2023)", cat: "Alerj" },
-            { src: frenteParlamentarImg, alt: "Frente Parlamentar em Defesa das Pessoas com TEA", cat: "Inclusão" },
+            { src: eventImg, alt: "Discurso na tribuna da ALERJ", cat: "Alerj" },
+            { src: peopleImg, alt: "Encontro com moradoras", cat: "Municípios" },
+            { src: universityImg, alt: "Escola atendida", cat: "Educação" },
+            { src: hospitalImg, alt: "Visita a hospital", cat: "Saúde" },
+            { src: ctaImg, alt: "Inauguração em município", cat: "Eventos" },
+            { src: peopleImg, alt: "Abraço em mãe atípica", cat: "Inclusão" },
+            { src: agriImg, alt: "Agricultura familiar", cat: "Municípios" },
+            { src: heroImg, alt: "Retrato institucional", cat: "Alerj" },
+            { src: universityImg, alt: "Entrega de equipamentos", cat: "Educação" },
+            { src: hospitalImg, alt: "Ambulância entregue", cat: "Saúde" },
+            { src: peopleImg, alt: "Ação com comunidade", cat: "Inclusão" },
+            { src: eventImg, alt: "Evento oficial", cat: "Eventos" },
           ]}
         />
         <Depoimentos />
