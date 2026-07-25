@@ -1097,8 +1097,21 @@ const causas = [
 function Causas() {
   const [open, setOpen] = useState<number | null>(null);
   return (
-    <section id="causas" className="relative bg-secondary py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+    <section id="causas" className="relative overflow-hidden bg-secondary py-24 sm:py-32">
+      {/* Autism awareness accents */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-puzzle-pattern"
+        style={{ opacity: 0.06 }}
+      />
+      <img
+        aria-hidden
+        src={mascote88}
+        alt=""
+        className="pointer-events-none absolute -bottom-6 -right-6 w-40 select-none opacity-[0.10] mix-blend-multiply animate-float-slow sm:w-56 md:w-64"
+      />
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
+
         <Reveal>
           <div className="mx-auto max-w-3xl text-center">
             <SectionEyebrow>As causas que movem a Carla</SectionEyebrow>
