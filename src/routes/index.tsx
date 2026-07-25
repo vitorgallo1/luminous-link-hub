@@ -1673,11 +1673,11 @@ function Footer() {
 function LandingPage() {
   return (
     <div className="relative min-h-screen bg-background">
-      {/* Autism awareness — subtle puzzle-piece watermark across the whole page */}
+      {/* Autism awareness — subtle puzzle-piece watermark across the whole page (overlay) */}
       <div
         aria-hidden
-        className="pointer-events-none fixed inset-0 z-0 bg-puzzle-pattern"
-        style={{ opacity: 0.04 }}
+        className="pointer-events-none fixed inset-0 z-[60] bg-puzzle-pattern mix-blend-multiply"
+        style={{ opacity: 0.05 }}
       />
       <div className="relative z-10">
       <Nav />
