@@ -180,3 +180,19 @@
   backdrop-filter: blur(16px);
   border: 1px solid oklch(0.79 0.13 85 / 0.35);
 }
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) rotate(-2deg); }
+  50% { transform: translateY(-14px) rotate(2deg); }
+}
+@utility animate-float-slow {
+  animation: float-slow 7s ease-in-out infinite;
+}
+
+/* Autism puzzle-piece watermark pattern (very subtle, spectrum colors) */
+@utility bg-puzzle-pattern {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'><g stroke='%23082B5B' stroke-width='1.1' stroke-linejoin='round'><path d='M20 30h18a5 5 0 010 10h-18z' fill='%232196f3'/><path d='M80 20h18a5 5 0 010 10h-18z' fill='%23f5b301'/><path d='M130 55h18a5 5 0 010 10h-18z' fill='%232f9e44'/><path d='M45 90h18a5 5 0 010 10h-18z' fill='%23e53935'/><path d='M105 110h18a5 5 0 010 10h-18z' fill='%232196f3'/><path d='M30 140h18a5 5 0 010 10h-18z' fill='%23f5b301'/><path d='M140 145h14a4 4 0 010 8h-14z' fill='%232f9e44'/></g></svg>");
+  background-repeat: repeat;
+  background-size: 180px 180px;
+}
+
