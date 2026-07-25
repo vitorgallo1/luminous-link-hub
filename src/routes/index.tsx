@@ -56,6 +56,9 @@ import frenteParlamentarImg from "@/assets/frenteparlamentarpessoas.jpg";
 import quatroMandatosImg from "@/assets/quatromandatos.png";
 import primeiraMulherPresidenteImg from "@/assets/primeiramulherpresidente.jpg";
 import logoImg from "@/assets/logo.png";
+import mascote88Asset from "@/assets/mascote-88.png.asset.json";
+const mascote88 = mascote88Asset.url;
+
 const heroImg = fotoHeroImg;
 const ctaImg = ctaAsset.url;
 const peopleImg = peopleAsset.url;
@@ -1094,8 +1097,21 @@ const causas = [
 function Causas() {
   const [open, setOpen] = useState<number | null>(null);
   return (
-    <section id="causas" className="relative bg-secondary py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+    <section id="causas" className="relative overflow-hidden bg-secondary py-24 sm:py-32">
+      {/* Autism awareness accents */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-puzzle-pattern"
+        style={{ opacity: 0.06 }}
+      />
+      <img
+        aria-hidden
+        src={mascote88}
+        alt=""
+        className="pointer-events-none absolute -bottom-6 -right-6 w-40 select-none opacity-[0.10] mix-blend-multiply animate-float-slow sm:w-56 md:w-64"
+      />
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
+
         <Reveal>
           <div className="mx-auto max-w-3xl text-center">
             <SectionEyebrow>As causas que movem a Carla</SectionEyebrow>
@@ -1656,8 +1672,16 @@ function Footer() {
 
 function LandingPage() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="relative min-h-screen bg-background">
+      {/* Autism awareness — subtle puzzle-piece watermark across the whole page */}
+      <div
+        aria-hidden
+        className="pointer-events-none fixed inset-0 z-0 bg-puzzle-pattern"
+        style={{ opacity: 0.04 }}
+      />
+      <div className="relative z-10">
       <Nav />
+
       <main>
         <Hero />
         <Trajetoria />
@@ -1693,6 +1717,8 @@ function LandingPage() {
         <CTAFinal />
       </main>
       <Footer />
+      </div>
     </div>
   );
 }
+
