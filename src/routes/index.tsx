@@ -57,6 +57,15 @@ import quatroMandatosImg from "@/assets/quatromandatos.png";
 import primeiraMulherPresidenteImg from "@/assets/primeiramulherpresidente.jpg";
 import logoImg from "@/assets/logo.png";
 import mascote88Asset from "@/assets/mascote-88.png.asset.json";
+import alerjFala1Asset from "@/assets/alerj-fala-1.jpg.asset.json";
+import alerjFala2Asset from "@/assets/alerj-fala-2.jpg.asset.json";
+import alerjFala3Asset from "@/assets/alerj-fala-3.jpg.asset.json";
+import alerjFala4Asset from "@/assets/alerj-fala-4.jpg.asset.json";
+import alerjMocao1Asset from "@/assets/alerj-mocao-1.jpg.asset.json";
+import alerjMocao2Asset from "@/assets/alerj-mocao-2.jpg.asset.json";
+import alerjMedalhaAsset from "@/assets/alerj-medalha.jpg.asset.json";
+import alerjColetivaAsset from "@/assets/alerj-coletiva.jpg.asset.json";
+import reuniaoGabineteAsset from "@/assets/reuniao-gabinete.jpg.asset.json";
 const mascote88 = mascote88Asset.url;
 
 const heroImg = fotoHeroImg;
