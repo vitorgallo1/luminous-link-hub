@@ -32,7 +32,6 @@ import {
   Landmark,
   Palette,
   Volleyball,
-  PlayCircle,
   X,
   Calendar,
   ShieldCheck,
@@ -57,6 +56,15 @@ import quatroMandatosImg from "@/assets/quatromandatos.png";
 import primeiraMulherPresidenteImg from "@/assets/primeiramulherpresidente.jpg";
 import logoImg from "@/assets/logo.png";
 import mascote88Asset from "@/assets/mascote-88.png.asset.json";
+import alerjFala1Asset from "@/assets/alerj-fala-1.jpg.asset.json";
+import alerjFala2Asset from "@/assets/alerj-fala-2.jpg.asset.json";
+import alerjFala3Asset from "@/assets/alerj-fala-3.jpg.asset.json";
+import alerjFala4Asset from "@/assets/alerj-fala-4.jpg.asset.json";
+import alerjMocao1Asset from "@/assets/alerj-mocao-1.jpg.asset.json";
+import alerjMocao2Asset from "@/assets/alerj-mocao-2.jpg.asset.json";
+import alerjMedalhaAsset from "@/assets/alerj-medalha.jpg.asset.json";
+import alerjColetivaAsset from "@/assets/alerj-coletiva.jpg.asset.json";
+import reuniaoGabineteAsset from "@/assets/reuniao-gabinete.jpg.asset.json";
 const mascote88 = mascote88Asset.url;
 
 const heroImg = fotoHeroImg;
@@ -1404,59 +1412,6 @@ function Depoimentos() {
   );
 }
 
-/* ============ Vídeo ============ */
-
-function Video() {
-  const [playing, setPlaying] = useState(false);
-  return (
-    <section className="bg-background py-24 sm:py-32">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <Reveal>
-          <div className="mx-auto max-w-3xl text-center">
-            <SectionEyebrow>Assista</SectionEyebrow>
-            <h2 className="mt-5 font-display text-4xl font-black leading-tight text-navy sm:text-5xl">
-              Conheça a <span className="text-gradient-gold">história da Carla</span>.
-            </h2>
-            <p className="mt-5 text-muted-foreground sm:text-lg">
-              Em poucos minutos, uma trajetória que atravessa gerações.
-            </p>
-          </div>
-        </Reveal>
-
-        <Reveal delay={0.15}>
-          <div className="relative mt-14 overflow-hidden rounded-[2rem] border border-border shadow-elegant">
-            <img
-              src={peopleImg}
-              alt="Vídeo institucional"
-              loading="lazy"
-              className="aspect-video w-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/80 via-navy-deep/20 to-transparent" />
-            <button
-              onClick={() => setPlaying(true)}
-              className="group absolute inset-0 grid place-items-center"
-            >
-              <motion.div
-                whileHover={{ scale: 1.08 }}
-                className="grid h-24 w-24 place-items-center rounded-full gradient-gold shadow-gold sm:h-28 sm:w-28"
-              >
-                <PlayCircle className="h-12 w-12 text-navy-deep sm:h-14 sm:w-14" />
-              </motion.div>
-            </button>
-            <div className="absolute bottom-6 left-6 right-6 sm:bottom-8 sm:left-8">
-              <div className="text-[11px] font-bold uppercase tracking-widest text-gold">
-                Vídeo institucional
-              </div>
-              <div className="mt-2 font-display text-2xl font-extrabold text-white sm:text-3xl">
-                Uma vida a serviço do interior do Rio.
-              </div>
-            </div>
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
 
 /* ============ Feed Social ============ */
 
@@ -1708,10 +1663,18 @@ function LandingPage() {
             { src: quatroMandatosImg, alt: "Quatro mandatos como Prefeita", cat: "Eventos" },
             { src: deputadaEstadualImg, alt: "Deputada Estadual pela Alerj (2023)", cat: "Alerj" },
             { src: frenteParlamentarImg, alt: "Frente Parlamentar em Defesa das Pessoas com TEA", cat: "Inclusão" },
+            { src: alerjFala1Asset.url, alt: "Carla Machado em pronunciamento no plenário da Alerj", cat: "Alerj" },
+            { src: alerjFala2Asset.url, alt: "Carla Machado discursando em solenidade", cat: "Eventos" },
+            { src: alerjFala3Asset.url, alt: "Carla Machado em debate no plenário da Alerj", cat: "Alerj" },
+            { src: alerjFala4Asset.url, alt: "Carla Machado em audiência pública", cat: "Alerj" },
+            { src: alerjMocao1Asset.url, alt: "Entrega de Moção de Aplausos ao historiador Bruno de Azevedo Costa", cat: "Eventos" },
+            { src: alerjMocao2Asset.url, alt: "Entrega de Moção de Aplausos ao Centro Cultural Narcisa Amália", cat: "Eventos" },
+            { src: alerjMedalhaAsset.url, alt: "Medalha Tiradentes concedida a Narcisa Amália de Campos", cat: "Eventos" },
+            { src: alerjColetivaAsset.url, alt: "Carla Machado em coletiva de imprensa", cat: "Alerj" },
+            { src: reuniaoGabineteAsset.url, alt: "Carla Machado em reunião de trabalho no gabinete", cat: "Municípios" },
           ]}
         />
         <Depoimentos />
-        <Video />
         <Feed />
         <Legado image={heroImg} />
         <CTAFinal />
@@ -1721,4 +1684,5 @@ function LandingPage() {
     </div>
   );
 }
+
 
