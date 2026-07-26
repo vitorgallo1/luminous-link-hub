@@ -32,7 +32,6 @@ import {
   Landmark,
   Palette,
   Volleyball,
-  PlayCircle,
   X,
   Calendar,
   ShieldCheck,
