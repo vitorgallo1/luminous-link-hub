@@ -1717,10 +1717,18 @@ function LandingPage() {
             { src: quatroMandatosImg, alt: "Quatro mandatos como Prefeita", cat: "Eventos" },
             { src: deputadaEstadualImg, alt: "Deputada Estadual pela Alerj (2023)", cat: "Alerj" },
             { src: frenteParlamentarImg, alt: "Frente Parlamentar em Defesa das Pessoas com TEA", cat: "Inclusão" },
+            { src: alerjFala1Asset.url, alt: "Carla Machado em pronunciamento no plenário da Alerj", cat: "Alerj" },
+            { src: alerjFala2Asset.url, alt: "Carla Machado discursando em solenidade", cat: "Eventos" },
+            { src: alerjFala3Asset.url, alt: "Carla Machado em debate no plenário da Alerj", cat: "Alerj" },
+            { src: alerjFala4Asset.url, alt: "Carla Machado em audiência pública", cat: "Alerj" },
+            { src: alerjMocao1Asset.url, alt: "Entrega de Moção de Aplausos ao historiador Bruno de Azevedo Costa", cat: "Eventos" },
+            { src: alerjMocao2Asset.url, alt: "Entrega de Moção de Aplausos ao Centro Cultural Narcisa Amália", cat: "Eventos" },
+            { src: alerjMedalhaAsset.url, alt: "Medalha Tiradentes concedida a Narcisa Amália de Campos", cat: "Eventos" },
+            { src: alerjColetivaAsset.url, alt: "Carla Machado em coletiva de imprensa", cat: "Alerj" },
+            { src: reuniaoGabineteAsset.url, alt: "Carla Machado em reunião de trabalho no gabinete", cat: "Municípios" },
           ]}
         />
         <Depoimentos />
-        <Video />
         <Feed />
         <Legado image={heroImg} />
         <CTAFinal />
@@ -1730,4 +1738,5 @@ function LandingPage() {
     </div>
   );
 }
+
 
