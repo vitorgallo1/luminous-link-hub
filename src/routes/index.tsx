@@ -1516,7 +1516,7 @@ function CTAFinal() {
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </a>
               <a
-                href="https://wa.me/5522999999999"
+                href="https://wa.me/5522997030088"
                 className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/5 px-8 py-4 text-sm font-semibold text-white backdrop-blur hover:border-green hover:text-green"
               >
                 <MessageCircle className="h-4 w-4" /> WhatsApp
@@ -1544,7 +1544,7 @@ function Footer() {
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               {[
-                { icon: MessageCircle, href: "https://wa.me/5522999999999", label: "WhatsApp", color: "hover:bg-green" },
+                { icon: MessageCircle, href: "https://wa.me/5522997030088", label: "WhatsApp", color: "hover:bg-green" },
                 { icon: Instagram, href: "#", label: "Instagram", color: "hover:bg-gold" },
                 { icon: Facebook, href: "#", label: "Facebook", color: "hover:bg-gold" },
                 { icon: Youtube, href: "#", label: "YouTube", color: "hover:bg-gold" },
@@ -1596,7 +1596,7 @@ function Footer() {
               </li>
               <li className="flex items-start gap-2">
                 <MessageCircle className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
-                (22) 99999-9999
+                (22) 99703-0088
               </li>
               <li className="flex items-start gap-2">
                 <Heart className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
