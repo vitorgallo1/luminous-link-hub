@@ -36,6 +36,7 @@ import {
   Calendar,
   ShieldCheck,
   Star,
+  Download,
 } from "lucide-react";
 
 import heroAsset from "@/assets/carla-portrait-real.jpg.asset.json";
@@ -459,11 +460,12 @@ function Hero() {
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </a>
               <a
-                href="#contas"
+                href="/prestacao-de-contas-carla-machado.pdf"
+                download
                 className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/5 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-gold/60 hover:bg-white/10 hover:text-gold"
               >
                 <ShieldCheck className="h-4 w-4" />
-                Prestação de Contas
+                Baixar Prestação de Contas
               </a>
             </motion.div>
           </div>
@@ -1606,7 +1608,18 @@ function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 border-t border-white/10 pt-8 text-xs text-white/50 sm:flex sm:items-center sm:justify-between">
+        <div className="mt-14 flex justify-center border-t border-white/10 pt-8">
+          <a
+            href="/prestacao-de-contas-carla-machado.pdf"
+            download
+            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white/85 transition-colors hover:border-gold/60 hover:bg-white/10 hover:text-gold"
+          >
+            <Download className="h-4 w-4" />
+            Baixar Prestação de Contas (PDF)
+          </a>
+        </div>
+
+        <div className="mt-8 border-t border-white/10 pt-8 text-xs text-white/50 sm:flex sm:items-center sm:justify-between">
           <div>
             © {new Date().getFullYear()} Coligação Carla Machado. Todos os direitos
             reservados.
