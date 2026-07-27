@@ -772,7 +772,7 @@ function Numeros() {
   const kpis = [
     { label: "Anos de vida pública", value: 43, suffix: "", accent: "gold" },
     { label: "Mandatos como Prefeita", value: 4, suffix: "", accent: "navy" },
-    { label: "Milhões em emendas", value: 6.2, prefix: "R$ ", decimals: 1, accent: "green" },
+    { label: "Milhões em emendas", value: 8.9, prefix: "R$ ", decimals: 1, accent: "green" },
     { label: "Instituições beneficiadas", value: 100, suffix: "+", accent: "gold" },
   ];
   const areas = [
