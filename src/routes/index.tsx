@@ -56,7 +56,6 @@ import quatroMandatosImg from "@/assets/quatromandatos.png";
 import primeiraMulherPresidenteImg from "@/assets/primeiramulherpresidente.jpg";
 import logoImg from "@/assets/logo.png";
 import mascote88Asset from "@/assets/mascote-88.png.asset.json";
-import alerjFala1Asset from "@/assets/alerj-fala-1.jpg.asset.json";
 import alerjFala2Asset from "@/assets/alerj-fala-2.jpg.asset.json";
 import alerjFala3Asset from "@/assets/alerj-fala-3.jpg.asset.json";
 import alerjFala4Asset from "@/assets/alerj-fala-4.jpg.asset.json";
@@ -1663,7 +1662,6 @@ function LandingPage() {
             { src: quatroMandatosImg, alt: "Quatro mandatos como Prefeita", cat: "Eventos" },
             { src: deputadaEstadualImg, alt: "Deputada Estadual pela Alerj (2023)", cat: "Alerj" },
             { src: frenteParlamentarImg, alt: "Frente Parlamentar em Defesa das Pessoas com TEA", cat: "Inclusão" },
-            { src: alerjFala1Asset.url, alt: "Carla Machado em pronunciamento no plenário da Alerj", cat: "Alerj" },
             { src: alerjFala2Asset.url, alt: "Carla Machado discursando em solenidade", cat: "Eventos" },
             { src: alerjFala3Asset.url, alt: "Carla Machado em debate no plenário da Alerj", cat: "Alerj" },
             { src: alerjFala4Asset.url, alt: "Carla Machado em audiência pública", cat: "Alerj" },
